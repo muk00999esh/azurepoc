@@ -1,0 +1,66 @@
+<mat-grid-list cols="26" rowHeight="70px" gutterSize="0">
+    <mat-grid-tile 
+        [colspan]="2" 
+        [rowspan]="1"
+        [style.background]=color[0]>
+        <div id="logo-div">
+            <img src="../assets/optum-log2.png" id="logo"/>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+        [style.background]=color[0]> 
+        <div id="nav-text">  
+            <h3>Data Quality Manager</h3>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+        [style.background]=color[0]>         
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="1"
+        [style.background]=color[1] > 
+        <button mat-flat-button class="nav-btn" [disableRipple]="true" routerLink="home" routerLinkActive="high">Home</button>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="1"
+        [style.background]=color[2] > 
+        <h4 class="nav-text2">Product</h4>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="1"
+        [style.background]=color[3] > 
+        <button mat-flat-button [matMenuTriggerFor]="menu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Carrier</button>
+        <mat-menu #menu>
+            <button mat-menu-item routerLink="createCarrier" routerLinkActive="high">Create Carrier</button>
+            <button mat-menu-item routerLink="viewCarrier" routerLinkActive="high">View Carrier</button>
+            <button mat-menu-item>Modify Carrier</button>
+        </mat-menu>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="1"
+        [style.background]=color[4] > 
+        <h4 class="nav-text2">Client</h4>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="1"
+        [style.background]=color[5] > 
+        <h4 class="nav-text2">Format</h4>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="1"
+        [style.background]=color[6]  > 
+        <h4 class="nav-text2">Mapping</h4>
+    </mat-grid-tile>
+   
+    
+</mat-grid-list>

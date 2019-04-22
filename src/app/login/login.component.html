@@ -1,0 +1,69 @@
+<mat-grid-list cols="9" rowHeight="70px" gutterSize="0">
+  <mat-grid-tile 
+      [colspan]="3" 
+      [rowspan]="1"
+      [style.background]=color>
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background]=color> 
+      <div id="logo-div">
+          <img src="../assets/optum-log2.png" id="logo"/>
+      </div>
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="1"
+      [style.background]=color> 
+      <div id="nav-text">  
+          <h3>Data Quality Manager</h3>
+      </div>
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]=color> 
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="6"
+      [style.background]="white"> 
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="2"
+      [style.background]="white"> 
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="6"
+      [style.background]="white"> 
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]="white">
+      <mat-form-field class="extend-element">
+          <input matInput [(ngModel)]="userName" placeholder="User Name">
+      </mat-form-field> 
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]="white">
+      <mat-form-field class="extend-element">
+          <input matInput [(ngModel)]="userPassword" (keyup.enter)="checkUser()" type="password" placeholder="Password">
+      </mat-form-field> 
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]="white">
+      <button mat-raised-button (click)="checkUser()">Login</button>
+  </mat-grid-tile>
+
+
+</mat-grid-list>

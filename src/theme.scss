@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$dqm-theme-primary:mat-palette($mat-orange);
+$dqm-theme-accent: mat-palette($mat-green);
+$dqm-theme-warn:   mat-palette($mat-red);
+
+
+$dqm-theme: mat-light-theme($dqm-theme-primary,$dqm-theme-accent,$dqm-theme-warn);
+
+
+@include angular-material-theme($dqm-theme);
