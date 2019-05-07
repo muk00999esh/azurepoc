@@ -1,8 +1,8 @@
-import { LoginComponent } from './../login/login.component';
-import { NavbarComponent } from './../navbar/navbar.component';
+import { LoginComponent } from '../../login/login.component';
+import { NavbarComponent } from '../../navbar/navbar.component';
 import { Component, OnInit } from '@angular/core';
-import { CreateCarrierService } from './create-carrier.service';
-import { AppComponent } from '../app.component';
+import { CreateCarrierService } from '../../Services/create-carrier.service';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'create-carrier',

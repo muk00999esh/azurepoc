@@ -1,0 +1,68 @@
+<mat-grid-list cols="10" rowHeight="70px" gutterSize="0px">
+  <mat-grid-tile [colspan]="2" [rowspan]="8" [style.background]=colors[1]>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="6" [rowspan]="2" [style.background]=colors[0]>
+    <h3 class="page-heading">{{page_heading}}</h3>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="8" [style.background]=colors[1]>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+
+    <div class="move-left">
+      <mat-form-field class="extend-element">
+        <mat-label>Client Name</mat-label>
+        <mat-select [ngModel]="selectedId" (ngModelChange)="getAllClientDetails($event)" required>
+          <mat-option *ngFor="let client of clients" [value]="client.CMCM_CD">
+            {{client.CMCM_CLIENT_NM}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+
+    <div class="move-left">
+      <mat-form-field class="extend-element">
+        <input matInput [value]="selectedId" placeholder="Client Code" disabled>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+
+    <div class="move-left">
+      <mat-form-field class="extend-element">
+        <mat-label>Type of Client engagement </mat-label>
+        <mat-select [value]="selectedEngagementType" disabled>
+          <mat-option value="0">None</mat-option>
+          <mat-option value="1">Direct Client</mat-option>
+          <mat-option value="2">Broker Client</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[2]>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+
+    <div class="move-left">
+  <mat-form-field class="extend-element">
+    <mat-select placeholder="Ingenix Types of Coverage" [formControl]="coverageDetail" multiple>
+      <mat-select-trigger>
+        {{coverageDetail.value ? coverageDetail.value[0] : ''}}
+        <span *ngIf="coverageDetail.value?.length > 1" class="example-additional-selection">
+          (+{{coverageDetail.value.length - 1}} {{coverageDetail.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let cvr of coverageList" [value]="cvr">{{cvr}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+</mat-grid-tile>
+
+</mat-grid-list>

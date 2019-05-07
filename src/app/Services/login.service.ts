@@ -9,6 +9,6 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   getUser(uname,pass){
-    return this.http.get('http://localhost:8312/DQMEmployer/api/login/'+uname+':'+pass);    
+    return this.http.get('http://localhost:3000/api/login/'+uname+'@'+pass);    
   }
 }

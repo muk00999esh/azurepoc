@@ -1,6 +1,6 @@
-import { ViewCarrierService } from './view-carrier.service';
+import { ViewCarrierService } from '../../Services/view-carrier.service';
 import { Component } from '@angular/core';
-import { AppComponent } from '../app.component';
+import { AppComponent } from '../../app.component';
 
 export interface Carrier{
   carrierId:number;

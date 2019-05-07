@@ -1,6 +1,6 @@
-import { CreateCarrierComponent } from './../create-carrier/create-carrier.component';
+import { CreateCarrierComponent } from './../Carrier/create-carrier/create-carrier.component';
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
+import { LoginService } from '../Services/login.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { NavbarComponent } from '../navbar/navbar.component';

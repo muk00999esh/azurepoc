@@ -4,14 +4,12 @@
         [rowspan]="8"
         [style.background]=colors[1]> 
     </mat-grid-tile>
-
     <mat-grid-tile
         [colspan]="6"
         [rowspan]="1"
         [style.background]=colors[0]> 
         <h3 class="page-heading">{{page_heading}}</h3>
     </mat-grid-tile>
-
     <mat-grid-tile
         [colspan]="2"
         [rowspan]="8"
@@ -26,12 +24,7 @@
         <div class="move-left">  
         <!-- <h4 id="body-text">Carrier code: </h4><br/> -->
         <mat-form-field>
-            <mat-label>Carrier</mat-label>
-            <mat-select (selectionChange)="onChange($event.value)" required> 
-                <mat-option *ngFor="let car of carriers" [value]="car.carrierId">
-                {{car.carrierCode}}
-                </mat-option>
-            </mat-select>
+                <input matInput [(ngModel)]="carrierCode" placeholder="Carrier Code" required>
         </mat-form-field><br/>
         </div>
 
@@ -45,7 +38,7 @@
         <div class="move-left">  
         <!-- <h4 id="body-text">Carrier Name: </h4><br/> -->
         <mat-form-field class="extend-element-medium">
-            <input matInput [value]="carrierName" placeholder="Carrier Name" disabled>
+            <input matInput [(ngModel)]="carrierName" placeholder="Carrier Name" required>
             
         </mat-form-field>
         </div>
@@ -61,8 +54,9 @@
         <!-- <h4 id="body-text">Carrier Type: </h4><br/> -->
         <mat-form-field class="extend-element"> 
             <mat-label>Carrier Type</mat-label> 
-            <mat-select [value]="carrierType.value" disabled>
-                <mat-option value="default">{{carrierType.viewValue}}</mat-option>                
+            <mat-select [(ngModel)]="carrierType" required>
+                <mat-option value="1">Biggie</mat-option>     
+                <mat-option value="2">Non-Biggie</mat-option>               
             </mat-select>
         </mat-form-field>
         </div>
@@ -85,8 +79,8 @@
         <!-- <h4 id="body-text">Primary Ingenix Biggie Contact: </h4><br/> -->
         <mat-form-field class="extend-element">
             <mat-label>Primary Ingenix Biggie Contact: </mat-label>
-            <mat-select [value]="carrierPrimary.value" disabled>
-                <mat-option value="default">{{carrierPrimary.viewValue}}</mat-option>   
+            <mat-select  [(ngModel)]="carrierPrimary">
+                <mat-option *ngFor="let cont of contacts" value="{{cont}}">{{cont}}</mat-option>   
             </mat-select>
         </mat-form-field>
         </div>
@@ -102,8 +96,8 @@
         <!-- <h4 id="body-text">Secondary Ingenix Biggie Contact: </h4><br/> -->
         <mat-form-field class="extend-element">
             <mat-label>Secondary Ingenix Biggie Contact:</mat-label>
-            <mat-select [value]="carrierSecondary.value" disabled>
-                <mat-option value="default">{{carrierSecondary.viewValue}}</mat-option>
+            <mat-select  [(ngModel)]="carrierSecondary" >
+                <mat-option *ngFor="let cont of contacts" value="{{cont}}">{{cont}}</mat-option>
             </mat-select>
         </mat-form-field>
         </div>
@@ -117,7 +111,7 @@
         
         <div class="move-left">  
         <!-- <h4 id="body-text">Halt Indicator: </h4><br/> -->
-        <mat-checkbox [checked]="carrierHalt" color="primary" labelPosition="before" disabled>Halt Indicator:</mat-checkbox>
+        <mat-checkbox (change)="carrierHaltEv($event)" color="primary" labelPosition="before" required>Halt Indicator:</mat-checkbox>
         </div>
     </mat-grid-tile>
 
@@ -128,15 +122,29 @@
         
         <!-- <h4 id="body-text">User Comments: </h4><br/> -->
         <mat-form-field style="width:60%;">
-            <textarea [value]="carrierUserComments" matInput placeholder="User Comments here.." disabled></textarea>
+            <textarea [(ngModel)]="carrierUserComments" matInput placeholder="User Comments here.."h4></textarea>
         </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile
-        [colspan]="6"
+        [colspan]="3"
+        [rowspan]="1"
+        [style.background]=colors[0]>    
+        
+        <div id="save-btn">
+            <button mat-raised-button (click)="createCar()">Save</button>
+        </div>
+        
+    </mat-grid-tile>
+
+    <mat-grid-tile
+        [colspan]="3"
         [rowspan]="1"
         [style.background]=colors[0]>         
-        <button mat-raised-button>Close</button>
+
+        <div id="cancel-btn">
+            <button mat-raised-button>Cancel</button>
+        </div>
     </mat-grid-tile>
 
 </mat-grid-list>

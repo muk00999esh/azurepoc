@@ -10,11 +10,11 @@ export class ViewCarrierService {
   }
 
   getAllCarriers(){
-    return this.http.get('http://localhost:8312/DQMEmployer/api/carriers');    
+    return this.http.get('http://localhost:3000/api/carriers');    
   }
 
 
   getCarrierDetails(code){
-    return this.http.get('http://localhost:8312/DQMEmployer/api/carriers/'+code);
+    return this.http.get('http://localhost:3000/api/carriers/'+code);
   }
 }
