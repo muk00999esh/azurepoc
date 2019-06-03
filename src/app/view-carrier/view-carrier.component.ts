@@ -1,11 +1,12 @@
 import { ViewCarrierService } from './view-carrier.service';
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { NgForm } from '@angular/forms';
 
-export interface Carrier{
-  carrierId:number;
-  carrierCode:string;
-}
+// export interface Carrier{
+//   carrierId:number;
+//   carrierCode:string;
+// }
 
 
 
@@ -21,9 +22,14 @@ export class ViewCarrierComponent {
   
   colors:string[]=["white","white","white"];
 
+  //array for list of all the carriers
   carriers;
+
+  //an object for storing the details of the seleced carrier
   details;
 
+  //values that are binded to each field on the UI
+  carrierCode;
   carrierName='';
   carrierType={
     value:'',viewValue:''
@@ -39,48 +45,51 @@ export class ViewCarrierComponent {
 
   constructor(private vcs:ViewCarrierService,private ac:AppComponent){
     ac.showNav='yes';
+    //to get the list of all the available carrier from the service
     vcs.getAllCarriers().subscribe(resp=>{this.carriers=resp});
   }
   
-  onChange(code){
+  //function to be called when a carrier is selected from the dropdown
+  onChange(id){
+
     //reset the values of fields before every change
+    this.carrierName='';
     this.carrierType.value='';
     this.carrierPrimary.value='';
     this.carrierSecondary.value='';
     this.carrierHalt=false;
     this.carrierUserComments='';
 
-    this.vcs.getCarrierDetails(code).subscribe(resp=>{
+    //to get the details of the selected carrier from the service
+    this.vcs.getCarrierDetails(id).subscribe(resp=>{
       this.details=resp;    
-    
-      this.carrierName=this.details.carrierName;
+     
+      this.carrierName=this.details.crcr_carrier_nm;
 
-      this.carrierType.value="default";         
-      this.carrierType.viewValue = (this.details.carrierTypeId==1) ? 'Biggie' :'Non-Biggie';
+      this.carrierType.value='default';         
+      this.carrierType.viewValue = (this.details.crcr_type_id==1) ? 'Biggie' :'Non-Biggie';
      
       if(this.details.primaryContactId!=''){
         this.carrierPrimary.value='default';
-        this.carrierPrimary.viewValue=this.details.primaryContactId;
+        this.carrierPrimary.viewValue=this.details.crcr_pri_cont_id;
       }
 
       if(this.details.secondaryContactId!=''){
         this.carrierSecondary.value='default';
-        this.carrierSecondary.viewValue=this.details.secondaryContactId;
+        this.carrierSecondary.viewValue=this.details.crcr_sec_cont_id;
       }
 
-      this.carrierHalt=(this.details.carrierHaltInicator=='Y')?true:false;
+      this.carrierHalt=(this.details.crcr_halt_ind=='Y')?true:false;
 
-
-      console.log("user notes are: "+this.details.userNotes);
-
-      this.carrierUserComments=(this.details.userNotes!="")?this.details.userNotes:"";
+      this.carrierUserComments=(this.details.usnt_notes!="")?this.details.usnt_notes:"";
         
     });
     
     
   }
-  
-  
 
+  closeCar(viewForm:NgForm){
+    viewForm.reset();
+  }
   
 }

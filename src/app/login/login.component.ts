@@ -1,9 +1,8 @@
-import { CreateCarrierComponent } from './../create-carrier/create-carrier.component';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
-import { NavbarComponent } from '../navbar/navbar.component';
+
 
 @Component({
   selector: 'login',
@@ -29,13 +28,13 @@ export class LoginComponent {
       this.result=resp;
 
       if(this.result.status=="Success"){
+        
         console.log("success");
         
         this.router.navigate(['home']);
-
         
       }else{
-        console.log("failure");
+        console.log("Failure");
       }
 
     });

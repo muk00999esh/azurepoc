@@ -1,3 +1,8 @@
+body{
+    height:100%;
+
+}
+
 .body-text{
     font-family: sans-serif;
     font-weight: 500;
@@ -11,6 +16,7 @@
 
 .move-left{
     width: 100%; 
+    
     display: flex; 
     align-items: flex-start;
     text-align: left;
@@ -66,55 +72,6 @@
     font-style: normal;
 }
 
-#carrier-div2{
-    /* height:100% !important;
-    width: 100%; 
-
-    display: flex; 
-    align-items: flex-start;
-    text-align: left; */
-    margin: 0;
-    padding:0;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 100%;
-    width:100%;
-    
-}
-
-#carrier-field2 {
-
-    margin-bottom: 0;
-    padding-bottom:0; 
-
-    width:130%;
-    height:70%;
-    
-    order: 1;
-
-}
-
-#carrier-errmsg2 {
-
-    margin-bottom: 0;
-    padding-bottom:0; 
-
-    position: relative;
-
-    
-    height:30%;
-    right:100%;   
-    top:60%;     
-    order: 2;
-    
-    color:red;
-    font-family: sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    font-style: normal;
-}
 
 .extend-element{
     width:90%;
@@ -138,3 +95,7 @@
     padding-left: 5%;
 }
 
+#ccval{
+    
+    color:red;
+}

@@ -3,20 +3,15 @@
     width: 100px;   
 }
 
-#logo-div{
-    padding-left: 20px; 
-    padding-bottom:15px;
-}
-
 #nav-text{
 
     color: white;
     font-family: sans-serif;
 
     width: 100%; 
-    display: flex; 
-    align-items: flex-start;
-    /* padding-left:10px; */
+    padding-bottom: 15px;
+    text-align: center;
+    
 }
 
 .extend-element{

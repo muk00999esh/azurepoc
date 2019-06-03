@@ -9,11 +9,11 @@ export class CreateCarrierService {
   }
 
   getAllContacts(){
-    return this.http.get('http://localhost:8312/DQMEmployer/api/carriers/contacts');    
+    return this.http.get('http://localhost:4000/api/carriers/contacts');    
   }
 
-  createCarrier(body,uname){
-    return this.http.post('http://localhost:8312/DQMEmployer/api/carriers/'+uname,body);
+  createCarrier(body){
+    return this.http.post('http://localhost:4000/api/carriers',body);
   }
 
  

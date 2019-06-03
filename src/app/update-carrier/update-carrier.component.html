@@ -1,0 +1,179 @@
+<form #updateForm="ngForm" name="updateForm"> 
+<mat-grid-list cols="10" rowHeight="70px" gutterSize="0px">
+  <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="8"
+      [style.background]=colors[1]> 
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="6"
+      [rowspan]="1"
+      [style.background]=colors[0]> 
+      <h3 class="page-heading">{{page_heading}}</h3>
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="8"
+      [style.background]=colors[1]> 
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]=colors[0]> 
+
+      <div id="carrier-div">  
+        <mat-form-field id="carrier-field"> 
+
+            <mat-label>Carrier*</mat-label>
+            <mat-select [(ngModel)]="carrierCd" (selectionChange)="onChange($event.value)" name="carrierCode" > 
+                <mat-option *ngFor="let car of carriers" [value]="car.carrierId">
+                    {{car.carrierCode}}
+                </mat-option>
+            </mat-select><br/>
+           
+            
+            <!-- required
+                <mat-error *ngIf="showErrMsg">
+                Please select a carrier..
+            </mat-error> -->
+        
+            <!-- 
+                [formControl]="carrierCodeControl"
+                <mat-error *ngIf="carrierCodeControl.hasError('required')">
+                    Please select a carrier..
+            </mat-error> -->
+           
+        
+        </mat-form-field>        
+        <p *ngIf="showErrMsg" id="carrier-errmsg">
+            Please select a carrier..
+        </p>
+       
+    </div>
+      
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]=colors[0] > 
+
+      <div class="move-left">  
+      
+      <mat-form-field class="extend-element-medium">
+          <input matInput [(ngModel)]="carrierName" placeholder="Carrier Name" name="carrierName">
+      </mat-form-field>
+      </div>
+
+  </mat-grid-tile>
+  
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]=colors[0]> 
+
+      <div class="move-left">  
+      
+      <mat-form-field class="extend-element"> 
+          <mat-label>Carrier Type</mat-label> 
+          <mat-select [(ngModel)]="carrierType.value"  name="carrierType">
+              <mat-option value="1">Biggie</mat-option>    
+              <mat-option value="2">Non-Biggie</mat-option>                            
+          </mat-select>
+      </mat-form-field>
+      </div>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]=colors[2]> 
+
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]=colors[0]> 
+      
+      <div class="move-left">  
+      
+      <mat-form-field class="extend-element">
+          <mat-label>Primary Ingenix Biggie Contact: </mat-label>
+          <mat-select [(ngModel)]="carrierPrimaryvalue" name="carrierPrimary">
+                <!-- [(value)]="carrierPrimaryvalue" -->
+            <mat-option *ngFor="let cont of pcontacts" value="{{cont}}">{{cont}}</mat-option>   
+          </mat-select>
+      </mat-form-field>
+      </div>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]=colors[0]> 
+      
+      <div class="move-left">  
+      <!-- <h4 id="body-text">Secondary Ingenix Biggie Contact: </h4><br/> -->
+      <mat-form-field class="extend-element">
+          <mat-label>Secondary Ingenix Biggie Contact:</mat-label>
+          <mat-select [(ngModel)]="carrierSecondaryvalue"  name="carrierSecondary">
+                <!-- [(value)]="carrierSecondaryvalue" -->
+            <mat-option *ngFor="let cont of scontacts" value="{{cont}}">{{cont}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]=colors[0]> 
+      
+      <div class="move-left">  
+      <!-- <h4 id="body-text">Halt Indicator: </h4><br/> -->
+      <mat-checkbox [(ngModel)]="carrierHalt" color="primary" labelPosition="before" name="carrierHaltInd">Halt Indicator:</mat-checkbox>
+      </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile
+      [colspan]="6"
+      [rowspan]="2"
+      [style.background]=colors[0]> 
+      
+      <!-- <h4 id="body-text">User Comments: </h4><br/> -->
+      <mat-form-field style="width:60%;">
+          <textarea [(ngModel)]="carrierUserComments" matInput placeholder="User Comments here.." name="userComments"></textarea>
+      </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile
+        [colspan]="3"
+        [rowspan]="1"
+        [style.background]=colors[0]>    
+        
+        <div id="save-btn">
+            <button mat-raised-button  (click)="modifyCar(updateForm);" name="carrierUpdate">Update</button>
+            <!--  carrierUpdateForm.resetForm()  ng-click=""-->
+        </div>
+        
+    </mat-grid-tile>
+
+    <mat-grid-tile
+        [colspan]="3"
+        [rowspan]="1"
+        [style.background]=colors[0]>         
+
+        <div id="cancel-btn">
+            <button mat-raised-button name="carrierCancel">Cancel</button>
+        </div>
+    </mat-grid-tile>
+
+</mat-grid-list>
+</form>

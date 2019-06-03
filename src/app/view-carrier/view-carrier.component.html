@@ -1,3 +1,4 @@
+<form #viewForm="ngForm" name="viewForm">
 <mat-grid-list cols="10" rowHeight="70px" gutterSize="0px">
     <mat-grid-tile
         [colspan]="2"
@@ -27,7 +28,7 @@
         <!-- <h4 id="body-text">Carrier code: </h4><br/> -->
         <mat-form-field>
             <mat-label>Carrier</mat-label>
-            <mat-select (selectionChange)="onChange($event.value)" required> 
+            <mat-select [(ngModel)]="carrierCode" name="carrierCode" (selectionChange)="onChange($event.value)" required> 
                 <mat-option *ngFor="let car of carriers" [value]="car.carrierId">
                 {{car.carrierCode}}
                 </mat-option>
@@ -45,7 +46,7 @@
         <div class="move-left">  
         <!-- <h4 id="body-text">Carrier Name: </h4><br/> -->
         <mat-form-field class="extend-element-medium">
-            <input matInput [value]="carrierName" placeholder="Carrier Name" disabled>
+            <input matInput [ngModel]="carrierName" name="carrierName" placeholder="Carrier Name" disabled>
             
         </mat-form-field>
         </div>
@@ -61,7 +62,7 @@
         <!-- <h4 id="body-text">Carrier Type: </h4><br/> -->
         <mat-form-field class="extend-element"> 
             <mat-label>Carrier Type</mat-label> 
-            <mat-select [value]="carrierType.value" disabled>
+            <mat-select [ngModel]="carrierType.value" name="carrierType" disabled>
                 <mat-option value="default">{{carrierType.viewValue}}</mat-option>                
             </mat-select>
         </mat-form-field>
@@ -85,7 +86,7 @@
         <!-- <h4 id="body-text">Primary Ingenix Biggie Contact: </h4><br/> -->
         <mat-form-field class="extend-element">
             <mat-label>Primary Ingenix Biggie Contact: </mat-label>
-            <mat-select [value]="carrierPrimary.value" disabled>
+            <mat-select [ngModel]="carrierPrimary.value" name="carrierPrimary" disabled>
                 <mat-option value="default">{{carrierPrimary.viewValue}}</mat-option>   
             </mat-select>
         </mat-form-field>
@@ -102,7 +103,7 @@
         <!-- <h4 id="body-text">Secondary Ingenix Biggie Contact: </h4><br/> -->
         <mat-form-field class="extend-element">
             <mat-label>Secondary Ingenix Biggie Contact:</mat-label>
-            <mat-select [value]="carrierSecondary.value" disabled>
+            <mat-select [ngModel]="carrierSecondary.value" name="carrierSecondary" disabled>
                 <mat-option value="default">{{carrierSecondary.viewValue}}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -117,7 +118,7 @@
         
         <div class="move-left">  
         <!-- <h4 id="body-text">Halt Indicator: </h4><br/> -->
-        <mat-checkbox [checked]="carrierHalt" color="primary" labelPosition="before" disabled>Halt Indicator:</mat-checkbox>
+        <mat-checkbox [ngModel]="carrierHalt" name="carrierHalt" color="primary" labelPosition="before" disabled>Halt Indicator:</mat-checkbox>
         </div>
     </mat-grid-tile>
 
@@ -128,7 +129,7 @@
         
         <!-- <h4 id="body-text">User Comments: </h4><br/> -->
         <mat-form-field style="width:60%;">
-            <textarea [value]="carrierUserComments" matInput placeholder="User Comments here.." disabled></textarea>
+            <textarea [ngModel]="carrierUserComments" name="carrierUserComments" matInput placeholder="User Comments here.." disabled></textarea>
         </mat-form-field>
     </mat-grid-tile>
 
@@ -136,9 +137,10 @@
         [colspan]="6"
         [rowspan]="1"
         [style.background]=colors[0]>         
-        <button mat-raised-button>Close</button>
+        <button mat-raised-button name="closeCarrier" (click)="closeCar(viewForm);">Close</button>
     </mat-grid-tile>
 
 </mat-grid-list>
+</form>
 
 
