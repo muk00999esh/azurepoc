@@ -1,34 +1,37 @@
 <div class="container p-t-5">
-  <form>
+  <form #myForm="ngForm">
     <div class="col-sm-12">
       <div class="row">
         <div class="col-sm-5">
           <mat-form-field class="nameCode">
-            <input matInput placeholder="Enter Client code">
+            <input name="clientCode" matInput placeholder="Enter Client code" [(ngModel)]="clientCode"
+              oninput="this.value = this.value.toUpperCase()">
           </mat-form-field>
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-5">
           <mat-form-field class="nameCode">
-            <input matInput placeholder="Enter Client name">
+            <input name="clientName" matInput placeholder="Enter Client name" [(ngModel)]="clientName">
           </mat-form-field>
         </div>
       </div>
       <br>
       <mat-form-field class="nameCode">
-        <textarea matInput placeholder="User Comments"></textarea>
+        <textarea matInput name="userNotes" [(ngModel)]="userNotes" placeholder="User Comments"></textarea>
       </mat-form-field>
     </div>
   </form>
   <div class="col-sm-12">
     <div class="row">
       <div class="col-sm-3"></div>
-        <div class="col-sm-3">
-          <button class="background-primary-color white-text btnWidth" mat-button>Save</button>
-        </div>
-        <div class="col-sm-3">
-          <button class="background-primary-color white-text btnWidth" mat-button>Cancel</button>
-        </div>
-        <div class="col-sm-3"></div>
+      <div class="col-sm-3">
+        <button class="background-primary-color white-text btnWidth" (click)="createNewClient();myForm.reset()"
+          mat-button>Save</button>
+      </div>
+      <div class="col-sm-3">
+        <button class="background-primary-color white-text btnWidth" (click)="myForm.reset()" mat-button>Cancel</button>
+      </div>
+      <div class="col-sm-3"></div>
     </div>
-    </div>
+  </div>
+  

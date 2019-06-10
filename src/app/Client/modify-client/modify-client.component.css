@@ -10,9 +10,34 @@
     align-items: flex-start;
     text-align: left;
 }
-
+.radioCss{
+    width: 100%; 
+    align-items: flex-start;
+    text-align: left;
+}
+.radioSpace{
+    margin-left: 5%;
+}
+.nameCode{
+    width: 100%;
+  }
 .extend-element{
     width:70%;
 }
-
+table {
+    width: 100%;
+  }
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: grey!important;   /*inner circle color change*/
+  }
+  ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+       border-color:grey!important; /*outer ring color change*/
+  }
+  .tableSelects{
+      width: 35%;
+      border: 1px solid lightgrey;
+  }
+  .btnWidth{
+      width: 50%;
+  }
 

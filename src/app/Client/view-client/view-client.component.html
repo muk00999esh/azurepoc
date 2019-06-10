@@ -13,10 +13,10 @@
 
     <div class="move-left">
       <mat-form-field class="extend-element">
-        <mat-label>Client Name</mat-label>
-        <mat-select [ngModel]="selectedCd" (ngModelChange)="getAllClientDetails($event)" required>
+        <mat-label>Client Code</mat-label>
+        <mat-select [(ngModel)]="selectedCd" (ngModelChange)="getAllClientDetails($event)" required>
           <mat-option *ngFor="let client of clients" [value]="client.CMCM_CD">
-            {{client.CMCM_CLIENT_NM}}
+            {{client.CMCM_CD}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -28,7 +28,7 @@
 
     <div class="move-left">
       <mat-form-field class="extend-element">
-        <input matInput [value]="selectedCd" placeholder="Client Code" disabled>
+        <input matInput [(ngModel)]="clientName" placeholder="Client Name" disabled>
       </mat-form-field>
     </div>
   </mat-grid-tile>
@@ -52,7 +52,7 @@
     <div class="move-left">
       <mat-form-field class="extend-element">
         <mat-select placeholder="Ingenix Types of Coverage ">
-          <mat-option *ngFor="let cvr of coverageList" [value]="cvr">{{cvr}}</mat-option>
+          <mat-option *ngFor="let cvr of coverageList" [value]="cvr.key">{{cvr.desc}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -82,7 +82,7 @@
   <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
     <div class="radioCss">
       <mat-form-field class="extend-element">
-        <input matInput placeholder="Process Retroactive Eligibility" [value]="retroMonth" [disabled]='true'>
+        <input matInput placeholder="Retroactivity Month" [value]="retroMonth" [disabled]='true'>
       </mat-form-field>
     </div>
   </mat-grid-tile>
@@ -97,16 +97,16 @@
         <td mat-cell *matCellDef="let element"> {{element.source}} </td>
       </ng-container>
 
-      <!-- mappxi Column -->
-      <ng-container matColumnDef="mappxi">
+      <!-- map_pxi Column -->
+      <ng-container matColumnDef="map_pxi">
         <th mat-header-cell *matHeaderCellDef>Mapping for first byte of SSN </th>
-        <td mat-cell *matCellDef="let element"> {{element.mappxi}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.map_pxi}} </td>
       </ng-container>
 
-      <!-- rembyte Column -->
-      <ng-container matColumnDef="rembyte">
+      <!-- map_rem_byte Column -->
+      <ng-container matColumnDef="map_rem_byte">
         <th mat-header-cell *matHeaderCellDef>Mapping for remaining byte of SSN *</th>
-        <td mat-cell *matCellDef="let element"> {{element.rembyte}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.map_rem_byte}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

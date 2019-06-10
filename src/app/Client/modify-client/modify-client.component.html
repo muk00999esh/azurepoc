@@ -1,26 +1,26 @@
 <mat-grid-list cols="10" rowHeight="70px" gutterSize="0px">
-  <mat-grid-tile [colspan]="2" [rowspan]="8" [style.background]=colors[1]>
+  <mat-grid-tile [colspan]="2" [rowspan]="20" [style.background]=colors[1]>
   </mat-grid-tile>
 
   <mat-grid-tile [colspan]="6" [rowspan]="2" [style.background]=colors[0]>
     <h3 class="page-heading">{{page_heading}}</h3>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="2" [rowspan]="8" [style.background]=colors[1]>
+  <mat-grid-tile [colspan]="2" [rowspan]="20" [style.background]=colors[1]>
   </mat-grid-tile>
 
   <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
 
     <div class="move-left">
       <mat-form-field class="extend-element">
-        <mat-label>Client Name</mat-label>
-        <mat-select [ngModel]="selectedId" (ngModelChange)="getAllClientDetails($event)" required>
+        <mat-label>Client Code</mat-label>
+        <mat-select [ngModel]="selectedCd" (ngModelChange)="getAllClientDetails($event)" required>
           <mat-option *ngFor="let client of clients" [value]="client.CMCM_CD">
-            {{client.CMCM_CLIENT_NM}}
+            {{client.CMCM_CD}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
-      <br/>
+        <mat-error *ngIf="selectedId==undefined">Client Code is required</mat-error>
+      </mat-form-field>    
     </div>
   </mat-grid-tile>
 
@@ -28,7 +28,8 @@
 
     <div class="move-left">
       <mat-form-field class="extend-element">
-        <input matInput [value]="selectedId" placeholder="Client Code" disabled>
+        <input  matInput [(ngModel)]="clientName" placeholder="Client Name" required >
+        <mat-error *ngIf="clientName.length==0">Client Name cannot be blank</mat-error>
       </mat-form-field>
     </div>
   </mat-grid-tile>
@@ -38,7 +39,7 @@
     <div class="move-left">
       <mat-form-field class="extend-element">
         <mat-label>Type of Client engagement </mat-label>
-        <mat-select [value]="selectedEngagementType" disabled>
+        <mat-select #engagement [value]="selectedEngagementType" [disabled]="selectedId==undefined">
           <mat-option value="0">None</mat-option>
           <mat-option value="1">Direct Client</mat-option>
           <mat-option value="2">Broker Client</mat-option>
@@ -51,18 +52,118 @@
   <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
 
     <div class="move-left">
-  <mat-form-field class="extend-element">
-    <mat-select placeholder="Ingenix Types of Coverage" [formControl]="coverageDetail" multiple>
-      <mat-select-trigger>
-        {{coverageDetail.value ? coverageDetail.value[0] : ''}}
-        <span *ngIf="coverageDetail.value?.length > 1" class="example-additional-selection">
-          (+{{coverageDetail.value.length - 1}} {{coverageDetail.value?.length === 2 ? 'other' : 'others'}})
-        </span>
-      </mat-select-trigger>
-      <mat-option *ngFor="let cvr of coverageList" [value]="cvr">{{cvr}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-</mat-grid-tile>
+      <mat-form-field class="extend-element">
+        <mat-select placeholder="Ingenix Types of Coverage" [formControl]="coverageDetail" multiple>
+          <mat-select-trigger>
+            {{coverageDetail.value ? coverageDetail.value[0] : ''}}
+            <span *ngIf="coverageDetail.value?.length > 1" class="example-additional-selection">
+              (+{{coverageDetail.value.length - 1}} {{coverageDetail.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngIf="allflag" #allSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
+          <mat-option *ngFor="let cvr of coverageList"  [value]="cvr.desc">{{cvr.desc}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+    <div class="move-left">
+      <mat-form-field class="extend-element">
+        <mat-label>Selected Types of Coverages</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let sel of coverageDetail.value" [value]="sel">
+            {{sel}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+    <div class="radioCss">
+      <p>Process Retroactive Eligibility </p>
+      <mat-radio-group [(ngModel)]="selectedStatus" aria-label="Select an option">
+        <mat-radio-button value="Y">Yes</mat-radio-button>
+        <mat-radio-button value="N" class="radioSpace">No</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+    <div class="radioCss">
+      <mat-form-field class="extend-element">
+        <mat-label>Retroactivity Months</mat-label>
+        <mat-select #retroValueMonth [value]="retroMonth">
+          <mat-option value="s" disabled>--Select--</mat-option>
+          <mat-option value="0">0</mat-option>
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+          <mat-option value="6">6</mat-option>
+          <mat-option value="7">7</mat-option>
+          <mat-option value="8">8</mat-option>
+          <mat-option value="9">9</mat-option>
+          <mat-option value="10">10</mat-option>
+          <mat-option value="11">11</mat-option>
+          <mat-option value="12">12</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="6" rowHeight="50px" [style.background]=colors[0]>
+    <mat-toolbar>Scrambling Profile</mat-toolbar>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="6" [rowspan]="8" [style.background]=colors[0] *ngIf="scrambleDetl.length > 0">
+    <table mat-table [dataSource]="scrambleDetl">
+      <!-- Source Column -->
+      <ng-container matColumnDef="source">
+        <th mat-header-cell *matHeaderCellDef> PX-I Source SSN</th>
+        <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+      </ng-container>
+      <!-- map_pxi Column -->
+      <ng-container matColumnDef="map_pxi">
+        <th mat-header-cell *matHeaderCellDef> Mapping for first byte of SSN * </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-select class="tableSelects" [(ngModel)]="element.map_pxi">
+            <mat-option [value]="map_pxi" *ngFor="let map_pxi of range">
+              {{ map_pxi }}
+            </mat-option>
+          </mat-select>
+        </td>
+      </ng-container>
+      <!-- map_rem_byte Column -->
+      <ng-container matColumnDef="map_rem_byte">
+        <th mat-header-cell *matHeaderCellDef> Mapping for remaining byte of SSN *</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-select class="tableSelects" [(ngModel)]="element.map_rem_byte">
+            <mat-option [value]="map_rem_byte" *ngFor="let map_rem_byte of remRange">
+              {{ map_rem_byte }}
+            </mat-option>
+          </mat-select>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="6" [rowspan]="1" [style.background]=colors[0] *ngIf="scrambleDetl.length === 0">
+    <div>No records found</div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="6" [rowspan]="2" [style.background]=colors[0]>
+    <div class="move-left">
+      <mat-form-field class="nameCode">
+        <mat-label>User Comments</mat-label>
+        <textarea matInput #userInput placeholder="Enter comments"></textarea>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+            <button class="background-primary-color white-text btnWidth" (click)="OnSubmitClick(engagement.value,retroValueMonth.value,userInput.value)" mat-button>Update</button>
+    </mat-grid-tile>
+  
+    <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+            <button class="background-primary-color white-text btnWidth" (click)="resetPage()" mat-button>Cancel</button>
+    </mat-grid-tile>
 
 </mat-grid-list>

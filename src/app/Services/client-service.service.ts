@@ -8,7 +8,7 @@ import { Http, Response, Headers , RequestOptions } from "@angular/http";
 })
 export class ClientServiceService {
 
-  url = 'http://localhost:3000/api'
+  url = 'http://localhost:4000/api'
   constructor(private http: Http) { }
   getClients(){
     return this.http.get(`${this.url}/clientList`);
@@ -19,11 +19,14 @@ export class ClientServiceService {
   getAllClientCoverage(){
     return this.http.get(`${this.url}/clientCoverageDetail`);
   }
-  getAllSelectedCoverage(val){
-    return this.http.get(`${this.url}/clientSelectedCoverage/`+val);
-  }
   getScrambleInfo(val){
     return this.http.get(`${this.url}/clientScramble/`+val);
+  }
+  submitUpdation(updateObject){
+    return this.http.put(`${this.url}/updateAll`,updateObject);
+  }
+  createClient(createObject){
+    return this.http.post(`${this.url}/clientCreate`,createObject);
   }
   
 }

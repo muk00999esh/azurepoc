@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatButtonModule, MatMenuModule, MatToolbarModule,MatRadioModule, MatTableModule} from '@angular/material';
+import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatButtonModule, MatMenuModule,MatDialogModule, MatToolbarModule,MatRadioModule, MatTableModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ViewCarrierComponent } from './Carrier/view-carrier/view-carrier.component';
@@ -19,7 +19,7 @@ import { CreateCarrierComponent } from './Carrier/create-carrier/create-carrier.
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { CreateClientComponent } from './Client/create-client/create-client.component';
+import { CreateClientComponent, ClientPopup } from './Client/create-client/create-client.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ViewClientComponent } from './Client/view-client/view-client.component';
 import { ModifyClientComponent } from './Client/modify-client/modify-client.component';
@@ -35,9 +35,10 @@ import { ModifyClientComponent } from './Client/modify-client/modify-client.comp
     HomeComponent,
     LoginComponent,
     CreateClientComponent,
+    ClientPopup,
     ViewClientComponent,
     ModifyClientComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -52,6 +53,7 @@ import { ModifyClientComponent } from './Client/modify-client/modify-client.comp
     MatCheckboxModule,
     MatButtonModule,
     MatMenuModule,
+    MatDialogModule,
     HttpModule,
     HttpClientModule,
     MatToolbarModule,
@@ -59,6 +61,7 @@ import { ModifyClientComponent } from './Client/modify-client/modify-client.comp
     MatTableModule,
     AppRoutingModule
   ],
+  entryComponents:[ClientPopup],
   providers: [
     LoginComponent,
     NavbarComponent,

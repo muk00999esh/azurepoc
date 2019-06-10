@@ -1,9 +1,6 @@
 import { ClientServiceService } from '../../Services/client-service.service';
 import { Component } from '@angular/core';
-export interface Food {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-view-client',
   templateUrl: './view-client.component.html',
@@ -21,9 +18,10 @@ export class ViewClientComponent {
   selectedId;
   clientDetails;
   coverageList: string[];
-  selectedList: string[];
   scrambleDetl = [];
-  displayedColumns: string[] = ['source', 'mappxi', 'rembyte'];
+  displayedColumns: string[] = ['source', 'map_pxi', 'map_rem_byte'];
+  selectedList: string[];
+  clientName ='';
 
   constructor(private clientService: ClientServiceService) { }
 
@@ -47,6 +45,7 @@ export class ViewClientComponent {
         resp = data;
         this.clientDetails = JSON.parse(resp._body);
         this.selectedId = this.clientDetails.cmcm_id;
+        this.clientName= this.clientDetails.cmcm_client_nm;
         this.retroMonth = this.clientDetails.clpq_retroact_mon;
         this.selectedStatus = this.clientDetails.clpq_retroact_ind;
         if (this.clientDetails.cmcm_engmnt_typ == 1) {
@@ -56,30 +55,25 @@ export class ViewClientComponent {
         } else {
           this.selectedEngagementType = '0';
         }
+        this.selectedList=this.clientDetails.prdt_desc;
         this.getAllClientCoverage();
-        this.getAllSelectedCoverage(this.selectedId);
         this.getScrambleInfo(this.selectedId);
       });
 
   }
   getAllClientCoverage() {
     var resp;
+    this.coverageList=[];
     this.clientService.getAllClientCoverage().subscribe(
       data => {
         resp = data;
         this.coverageList = JSON.parse(resp._body);
       });
   }
-  getAllSelectedCoverage(selectedID) {
-    var resp;
-    this.clientService.getAllSelectedCoverage(selectedID).subscribe(
-      data => {
-        resp = data;
-        this.selectedList = JSON.parse(resp._body);
-      });
-  }
+
   getScrambleInfo(selectedID) {
     var resp;
+    this.scrambleDetl=[];
     this.clientService.getScrambleInfo(selectedID).subscribe(
       data => {
         resp = data;
