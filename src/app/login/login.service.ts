@@ -8,7 +8,7 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
-  getUser(uname,pass){
+  getUser(uname:string,pass:string){
     return this.http.get('http://localhost:4000/api/login/'+uname+'@'+pass);    
   }
 }

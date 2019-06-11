@@ -25,7 +25,7 @@
         <div id="carrier-div">  
         
         <mat-form-field id="carrier-field">
-                <input matInput [(ngModel)]="carrierCode" name="carrierCode" placeholder="Carrier Code*" >
+                <input matInput [(ngModel)]="carrierCode" name="carrierCode" placeholder="Carrier Code*" oninput="this.value = this.value.toUpperCase()">
         </mat-form-field>
 
         <p *ngIf="showErrMsg1" id="carrier-errmsg">
@@ -154,7 +154,7 @@
         [style.background]=colors[0]>         
 
         <div id="cancel-btn">
-            <button mat-raised-button name="carrierCancel">Cancel</button>
+            <button mat-raised-button (click)="cancelCar(createForm)" name="carrierCancel">Cancel</button>
         </div>
     </mat-grid-tile>
 

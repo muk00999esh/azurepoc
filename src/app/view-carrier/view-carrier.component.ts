@@ -2,12 +2,7 @@ import { ViewCarrierService } from './view-carrier.service';
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { NgForm } from '@angular/forms';
-
-// export interface Carrier{
-//   carrierId:number;
-//   carrierCode:string;
-// }
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,17 +14,18 @@ export class ViewCarrierComponent {
   
   page_heading = 'View Carrier';
   
-  
+  userID:string;
+  loggedIn:string;
+
   colors:string[]=["white","white","white"];
 
   //array for list of all the carriers
-  carriers;
+  carriers:any;
 
   //an object for storing the details of the seleced carrier
-  details;
+  details:any;
 
   //values that are binded to each field on the UI
-  carrierCode;
   carrierName='';
   carrierType={
     value:'',viewValue:''
@@ -43,14 +39,22 @@ export class ViewCarrierComponent {
   carrierHalt=false;
   carrierUserComments='';
 
-  constructor(private vcs:ViewCarrierService,private ac:AppComponent){
+  constructor(private vcs:ViewCarrierService,private router:Router, private ac:AppComponent){
     ac.showNav='yes';
+
+    this.userID = localStorage.getItem('userID');
+
+    this.loggedIn = localStorage.getItem('loggedIn');
+
+    if(this.loggedIn==undefined){
+      this.router.navigate(['']);
+    }
     //to get the list of all the available carrier from the service
     vcs.getAllCarriers().subscribe(resp=>{this.carriers=resp});
   }
   
   //function to be called when a carrier is selected from the dropdown
-  onChange(id){
+  onChange(id:any){
 
     //reset the values of fields before every change
     this.carrierName='';

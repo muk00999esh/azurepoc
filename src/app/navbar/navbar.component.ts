@@ -7,15 +7,24 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  userID:string;
+  timeNow:any;
   constructor() {
     console.log("date is: "+new Date());
+    this.userID = localStorage.getItem('userID');
+
+    let d=new Date();
+    this.timeNow = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+    
   }
 
   username:string=''
   date:Date;
   
+  coloruser:string='#ffffff';
   color:string[]=["#ff820d","#ff820d","#ff820d","#ff820d","#ff820d","#ff820d","#ff820d"];
   
+
   resetcolor(){
     let c='';
     for(c in this.color){

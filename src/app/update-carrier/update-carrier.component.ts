@@ -4,7 +4,9 @@ import { ViewCarrierService } from '../view-carrier/view-carrier.service';
 import { UpdateCarrierService } from './update-carrier.service';
 import { CreateCarrierService } from '../create-carrier/create-carrier.service';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { StatusDialogComponent } from '../status-dialog/status-dialog.component';
 
 
 @Component({
@@ -16,6 +18,8 @@ export class UpdateCarrierComponent {
   
   carrierCd;
   page_heading = 'Modify Carrier';
+  userID:string;
+  loggedIn:string;
   showErrMsg=false;
   
   colors:string[]=["white","white","white"];
@@ -27,17 +31,15 @@ export class UpdateCarrierComponent {
   carriers:any;
 
   //list for primary and secondary contacts
-  pcontacts:any;
-  scontacts:any;
-  pfound:boolean=false;
-  sfound:boolean=false;
+  pcontacts:any=[];
+  scontacts:any=[];
 
   //an object for storing the details of the selected carrier from service for UI
   details:any;
 
   //values that are binded to each field on the UI
   carrH:string;
-  username='mkhan80';
+  
   selectedId:number;
   carrierName='';
   carrierType={
@@ -49,16 +51,21 @@ export class UpdateCarrierComponent {
   carrierHalt=false;
   carrierUserComments='';
 
-  //form control for validating the carrier code field on UI
-  //carrierCodeControl=new FormControl('', [Validators.required]);
-
   mresult:any;
-  
-  
+    
 
-  constructor(private vcs:ViewCarrierService,private ccs:CreateCarrierService,private mcs:UpdateCarrierService,private ac:AppComponent){
+  constructor(private vcs:ViewCarrierService,private ccs:CreateCarrierService,private mcs:UpdateCarrierService,private ac:AppComponent,private router:Router,public matDial:MatDialog){
        
     ac.showNav='yes';
+
+    this.userID = localStorage.getItem('userID');
+
+    this.loggedIn = localStorage.getItem('loggedIn');
+
+    if(this.loggedIn==undefined){
+      this.router.navigate(['']);
+    }
+    
 
     //to get the list of all the available carrier from the service
     vcs.getAllCarriers().subscribe(resp=>{this.carriers=resp});
@@ -67,15 +74,34 @@ export class UpdateCarrierComponent {
     ccs.getAllContacts().subscribe(resp=>{this.pcontacts=resp,this.scontacts=resp});
     
   }
+
+  openDialog(res:string): void {
+
+    let dialogRef = this.matDial.open(StatusDialogComponent, {
+      width:'250px',
+      data:{        
+        status:res
+      }      
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed'); 
+    //   console.log(result);
+    // });
+
+  }
   
   //function to be called when a carrier is selected from the dropdown
   onChange(id:any){
 
     this.showErrMsg=false;
     this.selectedId=id;
+
     //reset the values of fields before every change
     this.carrierName='';
     this.carrierType.value='';
+    this.carrierPrimaryvalue='';
+    this.carrierSecondaryvalue='';
     this.carrierHalt=false;
     this.carrierUserComments='';
 
@@ -85,38 +111,23 @@ export class UpdateCarrierComponent {
       
       this.carrierName=this.details.crcr_carrier_nm;
 
-        
       this.carrierType.value = (this.details.crcr_type_id==1) ? "1" : "2";
 
-      if(this.pfound){
-        this.pfound=false;
-        this.pcontacts.pop();
-      }
-      if(this.details.crcr_pri_cont_id!=undefined){
+      if(this.details.crcr_pri_cont_id!=undefined&&this.details.crcr_pri_cont_id!=''){
 
         const loc=this.pcontacts;
         const dbval=this.details.crcr_pri_cont_id;
        
         loc.forEach((i: string)=>{
           if(i.indexOf(dbval)!==-1){
-            this.carrierPrimaryvalue=i; 
-            this.pfound=true;
+            this.carrierPrimaryvalue=i;             
           }
         });
 
-        if(!this.pfound){
-          this.pcontacts.push(dbval+'-'+dbval);
-          this.carrierPrimaryvalue=dbval+'-'+dbval;
-        }
-                
       }
 
-      if(this.sfound){
-        this.sfound=false;
-        this.scontacts.pop();
-      }
 
-      if(this.details.crcr_sec_cont_id!=undefined){
+      if(this.details.crcr_sec_cont_id!=undefined&&this.details.crcr_sec_cont_id!=''){
 
         const loc=this.scontacts;
         const dbval=this.details.crcr_sec_cont_id;
@@ -124,13 +135,11 @@ export class UpdateCarrierComponent {
         loc.forEach((i: string)=>{
           if(i.indexOf(dbval)!==-1){
             this.carrierSecondaryvalue=i;
-            this.sfound=true;
+            
+
           }
         });
-        if(!this.sfound){
-          this.scontacts.push(dbval+'-'+dbval);
-          this.carrierSecondaryvalue=dbval+'-'+dbval;
-        }
+
       }
 
       this.carrierHalt=(this.details.crcr_halt_ind=='Y')?true:false;
@@ -164,19 +173,24 @@ export class UpdateCarrierComponent {
           "usnt_notes":this.carrierUserComments
 
         }
-        if(this.carrierPrimaryvalue!=undefined){
+        if(this.carrierPrimaryvalue!=undefined&&this.carrierPrimaryvalue!=''){
+          console.log("inside prim undef and empty");
           const cpv=this.carrierPrimaryvalue;
           this.carrier.crcr_pri_cont_id=cpv.substring(cpv.indexOf("-")+1);
         }
-        if(this.carrierSecondaryvalue!=undefined){
+        if(this.carrierSecondaryvalue!=undefined&&this.carrierSecondaryvalue!=''){
+          console.log("inside sec undef and empty");
           const csv=this.carrierSecondaryvalue;
           this.carrier.crcr_sec_cont_id=csv.substring(csv.indexOf("-")+1);
         }
+
+        console.log(this.carrier);
         
-        this.mcs.modifyCarrier(this.carrier,this.selectedId,this.username).subscribe(resp=>{
+        this.mcs.modifyCarrier(this.carrier,this.selectedId,this.userID).subscribe(resp=>{
           this.mresult=resp;
           console.log(this.mresult.status);
           //this.showStatusMessage(this.mresult.status,"hello");
+          this.openDialog(this.mresult.status);
           //alert(this.mresult.status);
         });
         
@@ -190,6 +204,10 @@ export class UpdateCarrierComponent {
 
     updateForm.reset();
     
+  }
+
+  cancelCar(updateForm:NgForm){
+    updateForm.reset();
   }
 
 }

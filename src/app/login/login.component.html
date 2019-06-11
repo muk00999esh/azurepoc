@@ -1,3 +1,4 @@
+<form #loginForm="ngForm" name="loginForm"> 
 <mat-grid-list cols="9" rowHeight="70px" gutterSize="0">
   <mat-grid-tile 
       [colspan]="3" 
@@ -39,7 +40,7 @@
       [rowspan]="1"
       [style.background]="white">
       <mat-form-field class="extend-element">
-          <input matInput [(ngModel)]="userName" placeholder="User Name">
+          <input matInput [(ngModel)]="userName" name="userName" placeholder="User Name" required>
       </mat-form-field> 
   </mat-grid-tile>
   <mat-grid-tile
@@ -47,15 +48,34 @@
       [rowspan]="1"
       [style.background]="white">
       <mat-form-field class="extend-element">
-          <input matInput [(ngModel)]="userPassword" (keyup.enter)="checkUser()" type="password" placeholder="Password">
+          <input matInput [(ngModel)]="userPassword" name="userPassword" (keyup.enter)="checkUser()" type="password" placeholder="Password" required>
       </mat-form-field> 
   </mat-grid-tile>
   <mat-grid-tile
       [colspan]="3"
       [rowspan]="1"
       [style.background]="white">
-      <button mat-raised-button (click)="checkUser()">Login</button>
+      <button mat-raised-button (click)="checkUser()" name="LoginButton">Login</button>
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="1"
+      [style.background]="white">
+      <p *ngIf="loginErrFlag" id="loginErrMsg">
+        Username or Password is incorrect..
+      </p>
+      <p *ngIf="loginUPFlag" id="loginErrMsg">
+        Please enter Username and Password..
+      </p>
+      <p *ngIf="loginUFlag" id="loginErrMsg">
+        Please enter a Username..
+      </p>
+      <p *ngIf="loginPFlag" id="loginErrMsg">
+        Please enter a Password..
+      </p>
+      
   </mat-grid-tile>
 
 
 </mat-grid-list>
+</form>

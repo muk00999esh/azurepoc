@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatButtonModule, MatMenuModule, MatToolbarModule} from '@angular/material';
+import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatDialogModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ViewCarrierComponent } from './view-carrier/view-carrier.component';
@@ -17,6 +17,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { UpdateCarrierComponent } from './update-carrier/update-carrier.component';
+import { StatusDialogComponent } from './status-dialog/status-dialog.component';
+import { UpdateCarrierService } from './update-carrier/update-carrier.service';
 
 
 
@@ -28,7 +30,8 @@ import { UpdateCarrierComponent } from './update-carrier/update-carrier.componen
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    UpdateCarrierComponent
+    UpdateCarrierComponent,
+    StatusDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +46,11 @@ import { UpdateCarrierComponent } from './update-carrier/update-carrier.componen
     MatCheckboxModule,
     MatButtonModule,
     MatMenuModule,
+    MatDialogModule,
     HttpClientModule,
     MatToolbarModule,
     ReactiveFormsModule,
+
     RouterModule.forRoot([
       {path:'',component:LoginComponent},
       {path:'home',component:HomeComponent},
@@ -54,11 +59,15 @@ import { UpdateCarrierComponent } from './update-carrier/update-carrier.componen
       {path:'modifyCarrier',component:UpdateCarrierComponent}
     ])
   ],
+  entryComponents:[
+    StatusDialogComponent
+  ],
   providers: [
     LoginComponent,
     NavbarComponent,
     ViewCarrierService,
-    CreateCarrierService
+    CreateCarrierService,
+    UpdateCarrierService
   ],
   bootstrap: [AppComponent]
 })

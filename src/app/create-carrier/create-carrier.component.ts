@@ -1,8 +1,11 @@
 import { NavbarComponent } from './../navbar/navbar.component';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CreateCarrierService } from './create-carrier.service';
 import { AppComponent } from '../app.component';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { StatusDialogComponent } from '../status-dialog/status-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'create-carrier',
@@ -17,12 +20,15 @@ export class CreateCarrierComponent {
   
   cresult:any;
 
+  userID:string;
+  loggedIn:string;
+
   showErrMsg1=false;
   showErrMsg2=false;
 
-  contacts;
-  details;
-  username:string='mkhan80';
+  contacts:any;
+  details:any;
+  
 
   carrier:any;
   carrierCode:string;
@@ -35,13 +41,37 @@ export class CreateCarrierComponent {
   carrierHalt=false;
   carrierUserComments:string;
 
-  constructor(private ccs:CreateCarrierService,nb:NavbarComponent, private ac:AppComponent){
+  constructor(private ccs:CreateCarrierService,nb:NavbarComponent, private ac:AppComponent,private router:Router, public matDial:MatDialog){
     ac.showNav='yes';
+
+    this.userID = localStorage.getItem('userID');
+
+    this.loggedIn = localStorage.getItem('loggedIn');
+
+    if(this.loggedIn==undefined){
+      this.router.navigate(['']);
+    }
     ccs.getAllContacts().subscribe(resp=>{this.contacts=resp});
   }
   
   carrierHaltEv(val){
     this.carrierHalt=val.checked;
+  }
+
+  openDialog(res:string): void {
+
+    let dialogRef = this.matDial.open(StatusDialogComponent, {
+      width:'250px',
+      data:{        
+        status:res
+      }      
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed'); 
+    //   console.log(result);
+    // });
+
   }
 
 
@@ -52,15 +82,16 @@ export class CreateCarrierComponent {
     this.showErrMsg2=false;
 
     
-    if(this.carrierCode!=undefined&&this.carrierName!=undefined){
+    if(this.carrierCode!=undefined&&this.carrierCode.trim()!=''&&this.carrierName!=undefined&&this.carrierName.trim()!=''){
+      console.log("in if carrier");
 
       this.carrH=this.carrierHalt==false?"N":"Y";
 
       this.carrier={
         
-        "crcr_cd":this.carrierCode.toUpperCase(),
+        "crcr_cd":this.carrierCode,
         "crcr_carrier_nm":this.carrierName,
-        "crcr_create_dsus_id":this.username,
+        "crcr_create_dsus_id":this.userID,
         "crcr_halt_ind":this.carrH,
         "crcr_type_id":parseInt(this.carrierType),
         "usnt_notes":this.carrierUserComments
@@ -79,16 +110,19 @@ export class CreateCarrierComponent {
         this.cresult=resp;
         console.log(this.cresult.status);
         createForm.reset();
-        alert(this.cresult.status);
+        this.openDialog(this.cresult.status);
+        //alert(this.cresult.status);
       });
 
     }else{
-      if(this.carrierCode==undefined){
+      console.log("in else carrier");
+
+      if(this.carrierCode==undefined||this.carrierCode.trim()==''){
         console.log("in code error");
         this.showErrMsg1=true;
       }
   
-      if(this.carrierName==undefined){
+      if(this.carrierName==undefined||this.carrierName.trim()==''){
         console.log("in name error");
         this.showErrMsg2=true;
       }
@@ -98,6 +132,10 @@ export class CreateCarrierComponent {
   
     
     
+  }
+
+  cancelCar(createForm:NgForm){
+    createForm.reset();
   }
   
 

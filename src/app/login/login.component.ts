@@ -15,29 +15,56 @@ export class LoginComponent {
     ac.showNav='no';
    }
 
-  
+  loginErrFlag=false;
+  loginUPFlag=false;
+  loginUFlag=false;
+  loginPFlag=false;
+
   color:string="#ff820d";
 
-  userName='';
-  userPassword='';
+  userName:string;
+  userPassword:string;
   result:any;
 
   checkUser(){
-    //console.log(this.userName+":"+this.userPassword);
-    this.ls.getUser(this.userName,this.userPassword).subscribe(resp=>{
-      this.result=resp;
+    
+    this.loginErrFlag=false;
+    this.loginUPFlag=false;
+    this.loginUFlag=false;
+    this.loginPFlag=false;
 
-      if(this.result.status=="Success"){
-        
-        console.log("success");
-        
-        this.router.navigate(['home']);
-        
+    if(this.userName!=undefined&&this.userPassword!=undefined){
+      this.ls.getUser(this.userName,this.userPassword).subscribe(resp=>{
+        this.result=resp;
+  
+        if(this.result.status=="Success"){
+          
+          console.log("success");
+
+          localStorage.setItem('userID',this.userName);
+          localStorage.setItem('loggedIn',"true");
+          
+          this.router.navigate(['home']);
+          
+        }else{
+          this.loginErrFlag=true;
+          console.log("Failure");
+        }
+  
+      });
+    }else{
+      if(this.userName==undefined&&this.userPassword==undefined){
+        this.loginUPFlag=true;
       }else{
-        console.log("Failure");
+        if(this.userName==undefined){
+          this.loginUFlag=true;
+        }if(this.userPassword==undefined){
+          this.loginPFlag=true;
+        }
       }
-
-    });
+      
+    }
+    
     
   }
  
