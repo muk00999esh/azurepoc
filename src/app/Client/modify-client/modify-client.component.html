@@ -117,7 +117,7 @@
     <table mat-table [dataSource]="scrambleDetl">
       <!-- Source Column -->
       <ng-container matColumnDef="source">
-        <th mat-header-cell *matHeaderCellDef> PX-I Source SSN</th>
+        <th mat-header-cell *matHeaderCellDef> PX-I Source SSN *</th>
         <td mat-cell *matCellDef="let element"> {{element.source}} </td>
       </ng-container>
       <!-- map_pxi Column -->
@@ -165,5 +165,9 @@
     <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
             <button class="background-primary-color white-text btnWidth" (click)="resetPage()" mat-button>Cancel</button>
     </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="6" [rowspan]="1" [style.background]=colors[0]>
+        <p *ngIf="require" class="mandat">* Please enter all the required fields</p>
+</mat-grid-tile>
 
 </mat-grid-list>

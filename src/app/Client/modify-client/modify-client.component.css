@@ -40,4 +40,8 @@ table {
   .btnWidth{
       width: 50%;
   }
+  .mandat{
+    color: red;
+    margin-left: 2%; 
+  }
 

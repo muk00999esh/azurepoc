@@ -1,9 +1,13 @@
 import { ClientServiceService } from '../../Services/client-service.service';
-import { Component, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatOption } from '@angular/material';
 import { Router } from '@angular/router';
-
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatOption } from '@angular/material';
+export interface DialogData {
+  status: string;
+  message: string;
+}
 @Component({
   selector: 'app-modify-client',
   templateUrl: './modify-client.component.html',
@@ -21,6 +25,7 @@ export class ModifyClientComponent {
   selectedId;
   clientDetails;
   allflag = false;
+  require=false;
   coverageDetail = new FormControl();
   coverageList;
   scrambleDetl = [];
@@ -31,8 +36,12 @@ export class ModifyClientComponent {
   updateResult;
   scrambleValidation;
   @ViewChild('allSelected') private allSelected: MatOption;
-  constructor(private clientService: ClientServiceService, private router: Router) { }
-
+  constructor(public dialog: MatDialog, private clientService: ClientServiceService, private router: Router) { }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UpdatePopup, {
+      data: {status: this.updateResult.status, message: this.updateResult.message}
+    });
+  }
   ngOnInit() {
     this.range[0]="--Select--";
     for (var i = 10; i < 100; i++) {
@@ -161,7 +170,7 @@ export class ModifyClientComponent {
     this.scrambleDetl.forEach(data => {
       if(data.source== "--Select--" || data.map_pxi== "--Select--" || data.map_rem_byte== "--Select--"){
         this.scrambleValidation=false;
-        //break;
+        
       }
     })
 
@@ -180,14 +189,17 @@ export class ModifyClientComponent {
         },
         table: { "scramble_table": this.scrambleDetl }
       }
-      console.log(toCompare);
-      // var resp;
-      // this.clientService.submitUpdation(toCompare).subscribe(
-      //   data => {
-      //     resp = data;
-      //     this.updateResult = JSON.parse(resp._body);
-      //   });
+      var resp;
+      this.clientService.submitUpdation(toCompare).subscribe(
+        data => {
+          resp = data;
+          this.updateResult = JSON.parse(resp._body);
+          this.openDialog();
+        });
 
+    }
+    else{
+      this.require=true;
     }
    
 
@@ -201,6 +213,22 @@ export class ModifyClientComponent {
     this.coverageDetail.patchValue([]);
     this.selectedStatus='';
     this.retroMonth = '';
+  }
+
+
+}
+@Component({
+  selector: 'update-popup.html',
+  templateUrl: 'update-popup.html',
+})
+export class UpdatePopup {
+
+  constructor(
+    public dialogRef: MatDialogRef<UpdatePopup>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 

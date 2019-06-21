@@ -22,7 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateClientComponent, ClientPopup } from './Client/create-client/create-client.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ViewClientComponent } from './Client/view-client/view-client.component';
-import { ModifyClientComponent } from './Client/modify-client/modify-client.component';
+import { ModifyClientComponent ,UpdatePopup} from './Client/modify-client/modify-client.component';
 
 
 
@@ -36,6 +36,7 @@ import { ModifyClientComponent } from './Client/modify-client/modify-client.comp
     LoginComponent,
     CreateClientComponent,
     ClientPopup,
+    UpdatePopup,
     ViewClientComponent,
     ModifyClientComponent
     ],
@@ -61,7 +62,7 @@ import { ModifyClientComponent } from './Client/modify-client/modify-client.comp
     MatTableModule,
     AppRoutingModule
   ],
-  entryComponents:[ClientPopup],
+  entryComponents:[ClientPopup,UpdatePopup],
   providers: [
     LoginComponent,
     NavbarComponent,

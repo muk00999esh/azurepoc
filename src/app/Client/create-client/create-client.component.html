@@ -5,13 +5,15 @@
         <div class="col-sm-5">
           <mat-form-field class="nameCode">
             <input name="clientCode" matInput placeholder="Enter Client code" [(ngModel)]="clientCode"
-              oninput="this.value = this.value.toUpperCase()">
+               required>
+              <mat-error *ngIf="clientCode.length==0">Client Code cannot be blank</mat-error>
           </mat-form-field>
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-5">
           <mat-form-field class="nameCode">
-            <input name="clientName" matInput placeholder="Enter Client name" [(ngModel)]="clientName">
+            <input name="clientName" matInput placeholder="Enter Client name" [(ngModel)]="clientName" required>
+            <mat-error *ngIf="clientName.length==0">Client Name cannot be blank</mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -25,13 +27,18 @@
     <div class="row">
       <div class="col-sm-3"></div>
       <div class="col-sm-3">
-        <button class="background-primary-color white-text btnWidth" (click)="createNewClient();myForm.reset()"
+        <button class="background-primary-color white-text btnWidth" (click)="createNewClient()"
           mat-button>Save</button>
       </div>
       <div class="col-sm-3">
         <button class="background-primary-color white-text btnWidth" (click)="myForm.reset()" mat-button>Cancel</button>
       </div>
       <div class="col-sm-3"></div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="row">
+     <p *ngIf="require" class="mandat">* Please enter all the required fields</p>
     </div>
   </div>
   

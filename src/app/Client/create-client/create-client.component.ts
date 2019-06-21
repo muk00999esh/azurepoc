@@ -18,6 +18,7 @@ export class CreateClientComponent implements OnInit {
   createResult;
   status: string;
   message: string;
+  require=false;
   constructor(public dialog: MatDialog,private clientService: ClientServiceService) { }
 
   openDialog(): void {
@@ -29,6 +30,7 @@ export class CreateClientComponent implements OnInit {
   ngOnInit() {
   }
   createNewClient(){
+  if(this.clientCode.length !=0  && this.clientName.length !=0 ){
   let newClient={
     "cmcm_cd":this.clientCode,
     "cmcm_client_nm":this.clientName,
@@ -53,6 +55,10 @@ export class CreateClientComponent implements OnInit {
 
   
 }
+else{
+  this.require=true;
+}
+  }
 
   
   

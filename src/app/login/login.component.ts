@@ -18,6 +18,7 @@ export class LoginComponent {
 
   
   color:string="#ff820d";
+  white:string="#FFFFFF";
 
   userName='';
   userPassword='';
