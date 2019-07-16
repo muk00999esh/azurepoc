@@ -25,7 +25,7 @@
         <div id="carrier-div">  
         
         <mat-form-field id="carrier-field">
-                <input matInput [(ngModel)]="carrierCode" name="carrierCode" placeholder="Carrier Code*" oninput="this.value = this.value.toUpperCase()">
+                <input matInput [(ngModel)]="carrierCode" name="carrierCode" placeholder="Carrier Code*" maxlength="4" oninput="this.value = this.value.toUpperCase()">
         </mat-form-field>
 
         <p *ngIf="showErrMsg1" id="carrier-errmsg">

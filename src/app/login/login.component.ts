@@ -13,7 +13,9 @@ export class LoginComponent {
 
   constructor(private ls:LoginService,private router:Router,private ac:AppComponent) {
     ac.showNav='no';
-   }
+
+    localStorage.setItem('loggedIn',"false");
+  }
 
   loginErrFlag=false;
   loginUPFlag=false;
@@ -32,6 +34,8 @@ export class LoginComponent {
     this.loginUPFlag=false;
     this.loginUFlag=false;
     this.loginPFlag=false;
+
+    
 
     if(this.userName!=undefined&&this.userPassword!=undefined){
       this.ls.getUser(this.userName,this.userPassword).subscribe(resp=>{
