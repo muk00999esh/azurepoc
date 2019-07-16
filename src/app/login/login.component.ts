@@ -1,4 +1,3 @@
-import { CreateCarrierComponent } from './../Carrier/create-carrier/create-carrier.component';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../Services/login.service';
 import { Router } from '@angular/router';
@@ -14,32 +13,63 @@ export class LoginComponent {
 
   constructor(private ls:LoginService,private router:Router,private ac:AppComponent) {
     ac.showNav='no';
-   }
 
-  
+    localStorage.setItem('loggedIn',"false");
+  }
+
+  loginErrFlag=false;
+  loginUPFlag=false;
+  loginUFlag=false;
+  loginPFlag=false;
+
   color:string="#ff820d";
   white:string="#FFFFFF";
 
-  userName='';
-  userPassword='';
+  userName:string;
+  userPassword:string;
   result:any;
 
   checkUser(){
-    //console.log(this.userName+":"+this.userPassword);
-    this.ls.getUser(this.userName,this.userPassword).subscribe(resp=>{
-      this.result=resp;
+    
+    this.loginErrFlag=false;
+    this.loginUPFlag=false;
+    this.loginUFlag=false;
+    this.loginPFlag=false;
 
-      if(this.result.status=="Success"){
-        console.log("success");
-        
-        this.router.navigate(['home']);
+    
 
-        
+    if(this.userName!=undefined&&this.userPassword!=undefined){
+      this.ls.getUser(this.userName,this.userPassword).subscribe(resp=>{
+        this.result=resp;
+  
+        if(this.result.status=="Success"){
+          
+          console.log("success");
+
+          localStorage.setItem('userID',this.userName);
+          localStorage.setItem('loggedIn',"true");
+          
+          this.router.navigate(['home']);
+          
+        }else{
+          this.loginErrFlag=true;
+          console.log("Failure");
+        }
+  
+      });
+    }else{
+      if(this.userName==undefined&&this.userPassword==undefined){
+        this.loginUPFlag=true;
       }else{
-        console.log("failure");
+        if(this.userName==undefined){
+          this.loginUFlag=true;
+        }if(this.userPassword==undefined){
+          this.loginPFlag=true;
+        }
       }
-
-    });
+      
+    }
+    
     
   }
  

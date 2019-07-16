@@ -14,9 +14,17 @@
     font-family: sans-serif;
 
     width: 100%; 
-    display: flex; 
-    align-items: flex-start;
-    /* padding-left:10px; */
+    padding-bottom: 15px;
+    text-align: center;
+    
+}
+
+#loginErrMsg{
+    color:red;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .extend-element{

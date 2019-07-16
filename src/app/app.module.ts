@@ -6,9 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'
-
+import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatButtonModule, MatMenuModule,MatDialogModule, MatToolbarModule,MatRadioModule, MatTableModule} from '@angular/material';
@@ -23,6 +22,9 @@ import { CreateClientComponent, ClientPopup } from './Client/create-client/creat
 import { AppRoutingModule } from './app-routing.module';
 import { ViewClientComponent } from './Client/view-client/view-client.component';
 import { ModifyClientComponent ,UpdatePopup} from './Client/modify-client/modify-client.component';
+import { UpdateCarrierComponent } from './Carrier/update-carrier/update-carrier.component';
+import { StatusDialogComponent } from './Carrier/status-dialog/status-dialog.component';
+import { UpdateCarrierService } from './Services/update-carrier/update-carrier.service';
 
 
 
@@ -34,11 +36,13 @@ import { ModifyClientComponent ,UpdatePopup} from './Client/modify-client/modify
     NavbarComponent,
     HomeComponent,
     LoginComponent,
+    UpdateCarrierComponent,
     CreateClientComponent,
     ClientPopup,
     UpdatePopup,
     ViewClientComponent,
-    ModifyClientComponent
+    ModifyClientComponent,
+    StatusDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -62,12 +66,13 @@ import { ModifyClientComponent ,UpdatePopup} from './Client/modify-client/modify
     MatTableModule,
     AppRoutingModule
   ],
-  entryComponents:[ClientPopup,UpdatePopup],
+  entryComponents:[ClientPopup,UpdatePopup,StatusDialogComponent],
   providers: [
     LoginComponent,
     NavbarComponent,
     ViewCarrierService,
     CreateCarrierService,
+    UpdateCarrierService
     ClientServiceService
   ],
   bootstrap: [AppComponent]

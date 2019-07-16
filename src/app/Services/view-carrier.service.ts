@@ -14,7 +14,7 @@ export class ViewCarrierService {
   }
 
 
-  getCarrierDetails(code){
-    return this.http.get('http://localhost:4000/api/carriers/'+code);
+  getCarrierDetails(id){
+    return this.http.get('http://localhost:4000/api/carriers/'+id);
   }
 }

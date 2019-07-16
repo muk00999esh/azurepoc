@@ -1,12 +1,8 @@
-import { ViewCarrierService } from '../../Services/view-carrier.service';
+import { ViewCarrierService } from './view-carrier.service';
 import { Component } from '@angular/core';
-import { AppComponent } from '../../app.component';
-
-export interface Carrier{
-  carrierId:number;
-  carrierCode:string;
-}
-
+import { AppComponent } from '../app.component';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,12 +14,18 @@ export class ViewCarrierComponent {
   
   page_heading = 'View Carrier';
   
-  
+  userID:string;
+  loggedIn:string;
+
   colors:string[]=["white","white","white"];
 
-  carriers;
-  details;
+  //array for list of all the carriers
+  carriers:any;
 
+  //an object for storing the details of the seleced carrier
+  details:any;
+
+  //values that are binded to each field on the UI
   carrierName='';
   carrierType={
     value:'',viewValue:''
@@ -37,50 +39,61 @@ export class ViewCarrierComponent {
   carrierHalt=false;
   carrierUserComments='';
 
-  constructor(private vcs:ViewCarrierService,private ac:AppComponent){
+  constructor(private vcs:ViewCarrierService,private router:Router, private ac:AppComponent){
     ac.showNav='yes';
+
+    this.userID = localStorage.getItem('userID');
+
+    this.loggedIn = localStorage.getItem('loggedIn');
+
+    if(this.loggedIn==undefined){
+      this.router.navigate(['']);
+    }
+    //to get the list of all the available carrier from the service
     vcs.getAllCarriers().subscribe(resp=>{this.carriers=resp});
   }
   
-  onChange(code){
+  //function to be called when a carrier is selected from the dropdown
+  onChange(id:any){
+
     //reset the values of fields before every change
+    this.carrierName='';
     this.carrierType.value='';
     this.carrierPrimary.value='';
     this.carrierSecondary.value='';
     this.carrierHalt=false;
     this.carrierUserComments='';
 
-    this.vcs.getCarrierDetails(code).subscribe(resp=>{
+    //to get the details of the selected carrier from the service
+    this.vcs.getCarrierDetails(id).subscribe(resp=>{
       this.details=resp;    
-    
-      this.carrierName=this.details.carrierName;
+     
+      this.carrierName=this.details.crcr_carrier_nm;
 
-      this.carrierType.value="default";         
-      this.carrierType.viewValue = (this.details.carrierTypeId==1) ? 'Biggie' :'Non-Biggie';
+      this.carrierType.value='default';         
+      this.carrierType.viewValue = (this.details.crcr_type_id==1) ? 'Biggie' :'Non-Biggie';
      
       if(this.details.primaryContactId!=''){
         this.carrierPrimary.value='default';
-        this.carrierPrimary.viewValue=this.details.primaryContactId;
+        this.carrierPrimary.viewValue=this.details.crcr_pri_cont_id;
       }
 
       if(this.details.secondaryContactId!=''){
         this.carrierSecondary.value='default';
-        this.carrierSecondary.viewValue=this.details.secondaryContactId;
+        this.carrierSecondary.viewValue=this.details.crcr_sec_cont_id;
       }
 
-      this.carrierHalt=(this.details.carrierHaltInicator=='Y')?true:false;
+      this.carrierHalt=(this.details.crcr_halt_ind=='Y')?true:false;
 
-
-      console.log("user notes are: "+this.details.userNotes);
-
-      this.carrierUserComments=(this.details.userNotes!="")?this.details.userNotes:"";
+      this.carrierUserComments=(this.details.usnt_notes!="")?this.details.usnt_notes:"";
         
     });
     
     
   }
-  
-  
 
+  closeCar(viewForm:NgForm){
+    viewForm.reset();
+  }
   
 }

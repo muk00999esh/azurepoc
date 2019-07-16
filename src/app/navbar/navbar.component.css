@@ -10,6 +10,32 @@
     padding-bottom:15px;
 }
 
+.title_link{
+    text-decoration: none;
+    color:white;
+    cursor: pointer;
+}
+
+#user-log-div{
+    color:#000000;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: normal;
+
+    width:100%;
+
+    /* display: flex;
+    align-items: flex-end;
+
+    align-content: flex-end;
+    text-align: right;
+    left:90%; */
+    
+}
+
+
+
 #nav-text{
 
     color: white;

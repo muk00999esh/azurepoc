@@ -4,7 +4,7 @@
         [rowspan]="1"
         [style.background]=color[0]>
         <div id="logo-div">
-            <img src="../assets/optum-log2.png" id="logo"/>
+            <a routerLink="home" class="title_link"><img src="../assets/optum-log2.png" id="logo"/></a>
         </div>
     </mat-grid-tile>
     <mat-grid-tile
@@ -12,7 +12,7 @@
         [rowspan]="1"
         [style.background]=color[0]> 
         <div id="nav-text">  
-            <h3>Data Quality Manager</h3>
+            <a routerLink="home" class="title_link"><h3>Data Quality Manager</h3></a>
         </div>
     </mat-grid-tile>
     <mat-grid-tile
@@ -30,41 +30,36 @@
         [colspan]="2"
         [rowspan]="1"
         [style.background]=color[2] > 
-        <button mat-flat-button class="nav-btn" [disableRipple]="true" routerLink="home" >Product</button>
+        <h4 class="nav-text2">Product</h4>
     </mat-grid-tile>
     <mat-grid-tile
         [colspan]="2"
         [rowspan]="1"
         [style.background]=color[3] > 
-        <button mat-flat-button [matMenuTriggerFor]="carrierMenu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Carrier</button>
-        <mat-menu #carrierMenu>
+        <button mat-flat-button [matMenuTriggerFor]="menu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Carrier</button>
+        <mat-menu #menu>
             <button mat-menu-item routerLink="createCarrier" routerLinkActive="high">Create Carrier</button>
             <button mat-menu-item routerLink="viewCarrier" routerLinkActive="high">View Carrier</button>
-            <button mat-menu-item>Modify Carrier</button>
+            <button mat-menu-item routerLink="modifyCarrier" routerLinkActive="high">Modify Carrier</button>
         </mat-menu>
     </mat-grid-tile>
     <mat-grid-tile
-    [colspan]="2"
-    [rowspan]="1"
-    [style.background]=color[3] > 
-    <button mat-flat-button [matMenuTriggerFor]="clientMenu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Client</button>
-    <mat-menu #clientMenu>
-        <button mat-menu-item routerLink="createClient" routerLinkActive="high">Create Client</button>
-        <button mat-menu-item routerLink="viewClient" routerLinkActive="high">View Client</button>
-        <button mat-menu-item routerLink="modifyClient" routerLinkActive="high">Modify Client</button>
-    </mat-menu>
+        [colspan]="2"
+        [rowspan]="1"
+        [style.background]=color[4] > 
+        <h4 class="nav-text2">Client</h4>
     </mat-grid-tile>
     <mat-grid-tile
         [colspan]="2"
         [rowspan]="1"
         [style.background]=color[5] > 
-        <button mat-flat-button class="nav-btn" [disableRipple]="true" routerLink="home" >Format</button>
+        <h4 class="nav-text2">Format</h4>
     </mat-grid-tile>
     <mat-grid-tile
         [colspan]="2"
         [rowspan]="1"
         [style.background]=color[6]  > 
-        <button mat-flat-button class="nav-btn" [disableRipple]="true" routerLink="home" >Mapping</button>
+        <h4 class="nav-text2">Mapping</h4>
     </mat-grid-tile>
    
     
