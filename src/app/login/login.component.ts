@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
+import { LoginService } from '../Services/login.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
-
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'login',
@@ -23,6 +23,7 @@ export class LoginComponent {
   loginPFlag=false;
 
   color:string="#ff820d";
+  white:string="#FFFFFF";
 
   userName:string;
   userPassword:string;

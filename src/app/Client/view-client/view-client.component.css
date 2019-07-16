@@ -1,0 +1,42 @@
+.page-heading{
+    font-family: sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.move-left{
+    width: 100%; 
+    display: flex; 
+    align-items: flex-start;
+    text-align: left;
+}
+.radioCss{
+    width: 100%; 
+    align-items: flex-start;
+    text-align: left;
+}
+.radioSpace{
+    margin-left: 5%;
+}
+
+.extend-element{
+    width:70%;
+}
+
+#noRecords{
+    margin-top: -55%;
+    margin-left: -80%;
+}
+
+
+
+table {
+    width: 100%;
+  }
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: grey!important;   /*inner circle color change*/
+  }
+  ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+       border-color:grey!important; /*outer ring color change*/
+  }
+

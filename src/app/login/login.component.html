@@ -22,23 +22,23 @@
   <mat-grid-tile
       [colspan]="3"
       [rowspan]="6"
-      [style.background]="white"> 
+      [style.background]=white> 
   </mat-grid-tile>
   <mat-grid-tile
       [colspan]="3"
       [rowspan]="2"
-      [style.background]="white"> 
+      [style.background]=white> 
   </mat-grid-tile>
   <mat-grid-tile
       [colspan]="3"
       [rowspan]="6"
-      [style.background]="white"> 
+      [style.background]=white> 
   </mat-grid-tile>
 
   <mat-grid-tile
       [colspan]="3"
       [rowspan]="1"
-      [style.background]="white">
+      [style.background]=white>
       <mat-form-field class="extend-element">
           <input matInput [(ngModel)]="userName" name="userName" placeholder="User Name" required>
       </mat-form-field> 
@@ -46,7 +46,7 @@
   <mat-grid-tile
       [colspan]="3"
       [rowspan]="1"
-      [style.background]="white">
+      [style.background]=white>
       <mat-form-field class="extend-element">
           <input matInput [(ngModel)]="userPassword" name="userPassword" (keyup.enter)="checkUser()" type="password" placeholder="Password" required>
       </mat-form-field> 
@@ -54,7 +54,7 @@
   <mat-grid-tile
       [colspan]="3"
       [rowspan]="1"
-      [style.background]="white">
+      [style.background]=white>
       <button mat-raised-button (click)="checkUser()" name="LoginButton">Login</button>
   </mat-grid-tile>
   <mat-grid-tile
