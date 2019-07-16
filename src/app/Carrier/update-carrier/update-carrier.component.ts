@@ -1,8 +1,7 @@
 import { Component} from '@angular/core';
-import { AppComponent } from '../app.component';
-import { ViewCarrierService } from '../view-carrier/view-carrier.service';
-import { UpdateCarrierService } from './update-carrier.service';
-import { CreateCarrierService } from '../create-carrier/create-carrier.service';
+import { ViewCarrierService } from '../../Services/view-carrier.service';
+import { UpdateCarrierService } from '../../Services/update-carrier.service';
+import { CreateCarrierService } from '../../Services/create-carrier.service';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
@@ -54,10 +53,8 @@ export class UpdateCarrierComponent {
   mresult:any;
     
 
-  constructor(private vcs:ViewCarrierService,private ccs:CreateCarrierService,private mcs:UpdateCarrierService,private ac:AppComponent,private router:Router,public matDial:MatDialog){
+  constructor(private vcs:ViewCarrierService,private ccs:CreateCarrierService,private mcs:UpdateCarrierService,private router:Router,public matDial:MatDialog){
        
-    ac.showNav='yes';
-
     this.userID = localStorage.getItem('userID');
 
     this.loggedIn = localStorage.getItem('loggedIn');

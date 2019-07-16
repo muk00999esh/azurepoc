@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateClientComponent } from './Client/create-client/create-client.component';
 import { ViewClientComponent } from './Client/view-client/view-client.component';
 import { ModifyClientComponent } from './Client/modify-client/modify-client.component';
+import { UpdateCarrierComponent } from './Carrier/update-carrier/update-carrier.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -16,7 +17,9 @@ const routes: Routes = [
   {path:'viewCarrier',component:ViewCarrierComponent},
   {path:'createClient',component:CreateClientComponent},
   {path:'viewClient',component:ViewClientComponent},
-  {path:'modifyClient',component:ModifyClientComponent}
+  {path:'modifyClient',component:ModifyClientComponent},
+  {path:'modifyCarrier',component:UpdateCarrierComponent }
+  
 
 
 ];

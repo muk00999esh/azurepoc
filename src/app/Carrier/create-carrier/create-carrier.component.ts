@@ -1,7 +1,5 @@
-import { NavbarComponent } from './../navbar/navbar.component';
 import { Component } from '@angular/core';
-import { CreateCarrierService } from './create-carrier.service';
-import { AppComponent } from '../app.component';
+import { CreateCarrierService } from '../../Services/create-carrier.service';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { StatusDialogComponent } from '../status-dialog/status-dialog.component';
@@ -41,8 +39,7 @@ export class CreateCarrierComponent {
   carrierHalt=false;
   carrierUserComments:string;
 
-  constructor(private ccs:CreateCarrierService,nb:NavbarComponent, private ac:AppComponent,private router:Router, public matDial:MatDialog){
-    ac.showNav='yes';
+  constructor(private ccs:CreateCarrierService, private router:Router, public matDial:MatDialog){
 
     this.userID = localStorage.getItem('userID');
 

@@ -1,6 +1,5 @@
-import { ViewCarrierService } from './view-carrier.service';
+import { ViewCarrierService } from '../../Services/view-carrier.service';
 import { Component } from '@angular/core';
-import { AppComponent } from '../app.component';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -39,8 +38,7 @@ export class ViewCarrierComponent {
   carrierHalt=false;
   carrierUserComments='';
 
-  constructor(private vcs:ViewCarrierService,private router:Router, private ac:AppComponent){
-    ac.showNav='yes';
+  constructor(private vcs:ViewCarrierService,private router:Router){
 
     this.userID = localStorage.getItem('userID');
 

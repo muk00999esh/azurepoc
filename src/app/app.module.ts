@@ -24,7 +24,7 @@ import { ViewClientComponent } from './Client/view-client/view-client.component'
 import { ModifyClientComponent ,UpdatePopup} from './Client/modify-client/modify-client.component';
 import { UpdateCarrierComponent } from './Carrier/update-carrier/update-carrier.component';
 import { StatusDialogComponent } from './Carrier/status-dialog/status-dialog.component';
-import { UpdateCarrierService } from './Services/update-carrier/update-carrier.service';
+import { UpdateCarrierService } from './Services/update-carrier.service';
 
 
 
@@ -72,7 +72,7 @@ import { UpdateCarrierService } from './Services/update-carrier/update-carrier.s
     NavbarComponent,
     ViewCarrierService,
     CreateCarrierService,
-    UpdateCarrierService
+    UpdateCarrierService,
     ClientServiceService
   ],
   bootstrap: [AppComponent]

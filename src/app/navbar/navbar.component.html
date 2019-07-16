@@ -47,7 +47,12 @@
         [colspan]="2"
         [rowspan]="1"
         [style.background]=color[4] > 
-        <h4 class="nav-text2">Client</h4>
+        <button mat-flat-button [matMenuTriggerFor]="menu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Client</button>
+        <mat-menu #menu>
+            <button mat-menu-item routerLink="createClient" routerLinkActive="high">Create Client</button>
+            <button mat-menu-item routerLink="viewClient" routerLinkActive="high">View Client</button>
+            <button mat-menu-item routerLink="modifyClient" routerLinkActive="high">Modify Client</button>
+        </mat-menu>
     </mat-grid-tile>
     <mat-grid-tile
         [colspan]="2"
