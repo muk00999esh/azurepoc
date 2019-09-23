@@ -25,6 +25,16 @@ import { ModifyClientComponent ,UpdatePopup} from './Client/modify-client/modify
 import { UpdateCarrierComponent } from './Carrier/update-carrier/update-carrier.component';
 import { StatusDialogComponent } from './Carrier/status-dialog/status-dialog.component';
 import { UpdateCarrierService } from './Services/update-carrier.service';
+import { ModifyReformatComponent } from './reformat/modify-reformat/modify-reformat.component';
+import { ViewReformatComponent } from './reformat/view-reformat/view-reformat.component';
+import { CopyReformatComponent } from './reformat/copy-reformat/copy-reformat.component';
+import { AddReformatComponent } from './reformat/add-reformat/add-reformat.component';
+
+
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { OnSavePopupComponent } from './on-save-popup/on-save-popup.component';
+import { InputLayoutLogisticsComponent } from './reformat/input-layout-logistics/input-layout-logistics.component';
+import { InputLayoutstructureComponent } from './reformat/input-layoutstructure/input-layoutstructure.component';
 
 
 
@@ -42,7 +52,14 @@ import { UpdateCarrierService } from './Services/update-carrier.service';
     UpdatePopup,
     ViewClientComponent,
     ModifyClientComponent,
-    StatusDialogComponent
+    StatusDialogComponent,
+    ModifyReformatComponent,
+    ViewReformatComponent,
+    CopyReformatComponent,
+    AddReformatComponent,
+    OnSavePopupComponent,
+    InputLayoutLogisticsComponent,
+    InputLayoutstructureComponent
     ],
   imports: [
     BrowserModule,
@@ -64,9 +81,10 @@ import { UpdateCarrierService } from './Services/update-carrier.service';
     MatToolbarModule,
     MatRadioModule,
     MatTableModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
-  entryComponents:[ClientPopup,UpdatePopup,StatusDialogComponent],
+  entryComponents:[ClientPopup,UpdatePopup,StatusDialogComponent,OnSavePopupComponent],
   providers: [
     LoginComponent,
     NavbarComponent,

@@ -1,0 +1,55 @@
+<mat-grid-list cols="10" rowHeight="70px" gutterSize="0px">
+  <mat-grid-tile [colspan]="2" [rowspan]="8" [style.background]=colors[1]>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="6" [rowspan]="1" [style.background]=colors[0]>
+    <h3 class="page-heading">{{page_heading}}</h3>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="8" [style.background]=colors[1]>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="6" [rowspan]="1" [style.background]=colors[0] style="overflow:visible !important">
+    <div class="move-left">
+      <ng-multiselect-dropdown class="extend-element" [placeholder]="'Available Carriers'" [data]="carrier" [(ngModel)]="selectedItems"
+        [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+      </ng-multiselect-dropdown>
+    </div>
+
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+
+    <div class="move-left">
+      <mat-form-field class="extend-element-medium">
+        <mat-label>Subject Area</mat-label>
+        <mat-select [(ngModel)]="selectedSubjectArea" required>
+          <mat-option *ngFor="let sub of subjectArea" [value]="sub.prdt_value">{{sub.prdt_desc}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+    <div class="move-left">
+      <mat-form-field class="extend-element-medium">
+        <input matInput [(ngModel)]="formatCode" placeholder="Format Code" required>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
+    <div class="move-left">
+      <mat-form-field class="extend-element-medium">
+        <input matInput [(ngModel)]="formatName" placeholder="Format Name" required>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" [rowspan]="2" [style.background]=colors[0]>
+    <button class="btnWidth" (click)="saveNewFormat()" mat-button>Save</button>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" [rowspan]="2" [style.background]=colors[0]>
+    <div class="move-left">
+      <button class="btnWidth" (click)="resetAddFormatPage()" mat-button>Cancel</button>
+    </div>
+  </mat-grid-tile>

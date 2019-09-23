@@ -8,3 +8,14 @@ body{
     margin: 0;
     padding: 0;
 }
+.multiselect-item-checkbox[_ngcontent-c7] input[type=checkbox][_ngcontent-c7]:checked + div[_ngcontent-c7]:before {
+    background: orange !important;
+}
+.multiselect-item-checkbox[_ngcontent-c7] input[type=checkbox][_ngcontent-c7] + div[_ngcontent-c7]:before {
+    color: orange !important;
+    border: 2px solid orange !important;
+}
+.multiselect-dropdown[_ngcontent-c7] .dropdown-btn[_ngcontent-c7] .selected-item[_ngcontent-c7] {
+    border: 1px solid orange !important;
+    background: orange !important;
+}

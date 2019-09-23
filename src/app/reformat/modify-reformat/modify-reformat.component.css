@@ -1,0 +1,29 @@
+.page-heading{
+    font-family: sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.nameCode{
+    width: 100%;
+  }
+.move-left{
+    width: 100%; 
+    display: flex; 
+    align-items: flex-start;
+    text-align: left;
+}
+.extend-element{
+    width:90%;
+}
+
+.extend-element-medium{
+    width:70%;
+}
+.btnWidth{
+    width: 50%;
+}
+.mandat{
+    color: red;
+    margin-left: 2%; 
+  }
+

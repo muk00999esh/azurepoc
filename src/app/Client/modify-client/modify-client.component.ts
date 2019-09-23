@@ -163,6 +163,15 @@ export class ModifyClientComponent {
       this.coverageDetail.patchValue([]);
     }
   }
+  tosslePerOne(all){ 
+    if (this.allSelected.selected) {  
+     this.allSelected.deselect();
+     return false;
+ }
+   if(this.coverageDetail.value.length==this.coverageList.length)
+     this.allSelected.select();
+ 
+ }
 
 
   OnSubmitClick(engagement: number, retroValueMonth: number, userInput: string) {

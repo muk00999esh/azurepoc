@@ -3,5 +3,6 @@
   <p>{{data.message}}</p>
 </div>
 <div mat-dialog-actions style="text-align: center">
+   <button [hidden]= 'data.navigate == undefined' mat-button (click)="confirm()" style="left: 30%">Next</button>
   <button mat-button (click)="onNoClick()" style="left: 30%">Close</button>
 </div>

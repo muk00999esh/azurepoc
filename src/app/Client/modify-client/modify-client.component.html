@@ -61,7 +61,7 @@
             </span>
           </mat-select-trigger>
           <mat-option *ngIf="allflag" #allSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
-          <mat-option *ngFor="let cvr of coverageList"  [value]="cvr.desc">{{cvr.desc}}</mat-option>
+          <mat-option *ngFor="let cvr of coverageList"  [value]="cvr.desc"  (click)="tosslePerOne(allSelected.viewValue)">{{cvr.desc}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -159,11 +159,11 @@
   </mat-grid-tile>
 
   <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
-            <button class="background-primary-color white-text btnWidth" (click)="OnSubmitClick(engagement.value,retroValueMonth.value,userInput.value)" mat-button>Update</button>
+            <button class="btnWidth" (click)="OnSubmitClick(engagement.value,retroValueMonth.value,userInput.value)" mat-button>Update</button>
     </mat-grid-tile>
   
     <mat-grid-tile [colspan]="3" [rowspan]="1" [style.background]=colors[0]>
-            <button class="background-primary-color white-text btnWidth" (click)="resetPage()" mat-button>Cancel</button>
+            <button class="btnWidth" (click)="resetPage()" mat-button>Cancel</button>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="6" [rowspan]="1" [style.background]=colors[0]>

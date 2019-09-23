@@ -1,71 +1,54 @@
 <mat-grid-list cols="26" rowHeight="70px" gutterSize="0">
-    <mat-grid-tile 
-        [colspan]="2" 
-        [rowspan]="1"
-        [style.background]=color[0]>
+    <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]=color[0]>
         <div id="logo-div">
-            <a routerLink="home" class="title_link"><img src="../assets/optum-log2.png" id="logo"/></a>
+            <a routerLink="home" class="title_link">
+                <img src="../assets/optum-log2.png" id="logo" />
+            </a>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]="6"
-        [rowspan]="1"
-        [style.background]=color[0]> 
-        <div id="nav-text">  
-            <a routerLink="home" class="title_link"><h3>Data Quality Manager</h3></a>
+    <mat-grid-tile [colspan]="6" [rowspan]="1" [style.background]=color[0]>
+        <div id="nav-text">
+            <a routerLink="home" class="title_link">
+                <h3>Data Quality Manager</h3>
+            </a>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]="6"
-        [rowspan]="1"
-        [style.background]=color[0]>         
+    <mat-grid-tile [colspan]="6" [rowspan]="1" [style.background]=color[0]>
     </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1"
-        [style.background]=color[1] > 
+    <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]=color[1]>
         <button mat-flat-button class="nav-btn" [disableRipple]="true" routerLink="home" routerLinkActive="high">Home</button>
     </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1"
-        [style.background]=color[2] > 
+    <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]=color[2]>
         <h4 class="nav-text2">Product</h4>
     </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1"
-        [style.background]=color[3] > 
-        <button mat-flat-button [matMenuTriggerFor]="menu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Carrier</button>
-        <mat-menu #menu>
+    <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]=color[3]>
+        <button mat-flat-button [matMenuTriggerFor]="carriermenu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Carrier</button>
+        <mat-menu #carriermenu>
             <button mat-menu-item routerLink="createCarrier" routerLinkActive="high">Create Carrier</button>
             <button mat-menu-item routerLink="viewCarrier" routerLinkActive="high">View Carrier</button>
             <button mat-menu-item routerLink="modifyCarrier" routerLinkActive="high">Modify Carrier</button>
         </mat-menu>
     </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1"
-        [style.background]=color[4] > 
-        <button mat-flat-button [matMenuTriggerFor]="menu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Client</button>
-        <mat-menu #menu>
+    <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]=color[4]>
+        <button mat-flat-button [matMenuTriggerFor]="clientmenu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Client</button>
+        <mat-menu #clientmenu>
             <button mat-menu-item routerLink="createClient" routerLinkActive="high">Create Client</button>
             <button mat-menu-item routerLink="viewClient" routerLinkActive="high">View Client</button>
             <button mat-menu-item routerLink="modifyClient" routerLinkActive="high">Modify Client</button>
         </mat-menu>
     </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1"
-        [style.background]=color[5] > 
-        <h4 class="nav-text2">Format</h4>
+    <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]=color[5]>
+        <button mat-flat-button [matMenuTriggerFor]="reformatMenu" class="nav-btn" [disableRipple]="true" routerLinkActive="high">Reformat</button>
+        <mat-menu #reformatMenu>
+            <button mat-menu-item routerLink="addReformat" routerLinkActive="high">Add Reformat</button>
+            <button mat-menu-item routerLink="viewReformat" routerLinkActive="high">View Reformat</button>
+            <button mat-menu-item routerLink="modifyReformat" routerLinkActive="high">Modify Reformat</button>
+            <button mat-menu-item routerLink="copyReformat" routerLinkActive="high">Copy Reformat</button>
+        </mat-menu>
     </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1"
-        [style.background]=color[6]  > 
+    <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]=color[6]>
         <h4 class="nav-text2">Mapping</h4>
     </mat-grid-tile>
-   
-    
+
+
 </mat-grid-list>

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 5000",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +24,8 @@
     "@angular/router": "^6.1.10",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
+    "mat-multiselect": "0.0.7",
+    "ng-multiselect-dropdown": "^0.2.3",
     "ngx-bootstrap": "^4.0.1",
     "npm": "^6.9.0",
     "rxjs": "~6.2.0",
