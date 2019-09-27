@@ -1,0 +1,205 @@
+body{
+    height:100%;
+
+}
+
+.body-text{
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
+#page-heading{
+    font-family: sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.move-left{
+    width: 100%; 
+    display: flex; 
+    align-items: flex-start;
+    text-align: left;
+}
+
+.extend-element{
+    width:90%;
+}
+
+.extend-element-medium{
+    width:70%;
+}
+
+#output_vars {
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+    margin: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5)
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+.my_style {
+
+    list-style: none;
+    background-color:#EBEFF2;
+    padding:5px;
+    margin:5px;
+    border-radius: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color:black;
+    text-align: left;
+    cursor: pointer;
+  
+  }
+
+
+
+.orange {
+      color:orange;
+  }
+
+.blue{
+      color: blue;
+  }
+
+.black{
+    color: black;
+}
+
+.act_or{
+    color:orange;
+}
+
+#lay_search_style{
+    width: 80%;
+    height: 80%;
+    padding:0 10%;
+
+}
+
+#layout_style{
+    widows: 50%;
+    height: 50%;
+    padding: 0 25%;
+}
+
+#left_panel {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll; 
+
+      text-align: center;
+      
+}
+
+#center_panel {
+    width: 100%;
+    height: 90%;
+    padding: 15px;
+}
+
+#mapping_desc{
+    height:5%;
+    font-size: 15px;
+    font-style:bold;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#mapping_area{
+    
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    font-family: Consolas, monaco, monospace;
+    height: 85%;
+    width: auto;
+    padding: 10px;
+    overflow-y:auto;
+
+}
+
+#right_panel{
+    width: 100%;
+    height: 96%;
+    padding: 2%;
+
+    display: flex;
+    flex-direction: row;
+    
+   
+}
+
+.right_tab_content{
+    width: 100%;
+    height: 100%;
+  
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
+
+::ng-deep .mat-tab-label, ::ng-deep .mat-tab-label-active{
+    min-width: 0 !important;
+    padding: 5px !important;
+    margin: 5px !important;
+}
+
+#bottom_panel1{
+    
+    height: 80%;
+    width: 50%;;
+    
+}
+
+#bottom_panel2{
+    
+    height: 50%;
+    width: 80%;
+    
+    
+}
+
+#bottom_panel3{
+    
+    height: 50%;
+    width: 80%;
+    
+}
+
+#bottom_panel4{
+    
+    height: 50%;
+    width: 60%;
+    
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: orange; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: orange; 
+}
+
+

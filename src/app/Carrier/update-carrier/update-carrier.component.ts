@@ -5,7 +5,7 @@ import { CreateCarrierService } from '../../Services/create-carrier.service';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { StatusDialogComponent } from '../status-dialog/status-dialog.component';
+import { StatusDialogComponent } from '../../Status-dialog/status-dialog.component';
 
 
 @Component({

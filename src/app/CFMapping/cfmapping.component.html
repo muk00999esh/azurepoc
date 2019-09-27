@@ -1,0 +1,292 @@
+<form #viewForm="ngForm" name="viewForm">
+    <div *ngIf="showMapping==false">
+        <mat-grid-list cols="10" rowHeight="70px" gutterSize="0px">
+            <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="8"
+                [style.background]=colors[1]> 
+            </mat-grid-tile>
+        
+            <mat-grid-tile
+                [colspan]="6"
+                [rowspan]="1"
+                [style.background]=colors[0]> 
+                <h3 id="page-heading">{{page_heading}}</h3>
+            </mat-grid-tile>
+        
+            <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="8"
+                [style.background]=colors[1]> 
+            </mat-grid-tile>
+        
+            <mat-grid-tile
+                [colspan]="3"
+                [rowspan]="1"
+                [style.background]=colors[2]> 
+        
+                <div class="move-left">  
+                <!-- <h4 id="body-text">Client code: </h4><br/> -->
+                <mat-form-field class="extend-element-medium"> 
+                    <mat-label>Client Code-Client Name</mat-label>
+                    <mat-select [(ngModel)]="clientCode" name="clientCode" (selectionChange)="onClientChange($event.value,$event)" required> 
+                        <mat-option *ngFor="let cli of clients" [value]="cli.clientId">
+                        {{cli.clientDetails}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field><br/>
+                </div>
+        
+            </mat-grid-tile>
+        
+            <mat-grid-tile
+                [colspan]="3"
+                [rowspan]="1"
+                [style.background]=colors[2]> 
+        
+                <div class="move-left">  
+                <!-- <h4 id="body-text">Carrier code: </h4><br/> -->
+                <mat-form-field class="extend-element-medium"> 
+                    <mat-label>Carrier Code-Carrier Name</mat-label>
+                    <mat-select [(ngModel)]="carrierCode" name="carrierCode" (selectionChange)="onCarrierChange($event.value,$event)" required> 
+                        <mat-option *ngFor="let car of carriers" [value]="car.carrierId">
+                        {{car.carrierDetails}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field><br/>
+                </div>
+        
+            </mat-grid-tile>
+        
+            
+      
+            <mat-grid-tile
+                [colspan]="3"
+                [rowspan]="1"
+                [style.background]=colors[2]> 
+        
+                <div class="move-left">  
+                <!-- <h4 id="body-text">Format code: </h4><br/> -->
+                <mat-form-field class="extend-element-medium"> 
+                    <mat-label>Format Code-Format Name</mat-label>
+                    <mat-select [(ngModel)]="formatCode" name="formatCode" (selectionChange)="onFormatChange($event.value,$event)" required> 
+                        <mat-option *ngFor="let fmt of formats" [value]="fmt.formatId">
+                        {{fmt.formatDetails}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field><br/>
+                </div>
+        
+            </mat-grid-tile>
+        
+            <mat-grid-tile
+              [colspan]="6"
+              [rowspan]="1"
+              [style.background]=colors[0]>         
+              
+              <button mat-raised-button (click)="gotoMapping()" name="gotoMapping">Next</button>
+            </mat-grid-tile>
+        
+        </mat-grid-list>
+</div>
+<div *ngIf="showMapping==true">
+
+    <mat-grid-list cols="12" rowHeight="70px" gutterSize="0px">
+
+        <mat-grid-tile
+            [colspan]="12"
+            [rowspan]="1"
+            [style.background]=colors[2]> 
+           
+            <h3 id="page-heading"> CF Mapping for Carrier Code <b>{{carrierCodeVal}}</b> and Format Code <b>{{formatCodeVal}}</b></h3>
+    
+        </mat-grid-tile>
+
+    
+        <mat-grid-tile
+            [colspan]="3"
+            [rowspan]="2"
+            [style.background]=colors[2]> 
+           
+            <div id="lay_search_style">
+                
+                <div id="layout_style">
+                    <mat-form-field class="extend-element">
+                        <mat-select [(ngModel)]="LayoutType" name="LayoutType" (selectionChange)="onLayoutChange($event.value)" required> 
+                            <mat-option *ngFor="let lt of layouts" [value]="lt.prdt_value">
+                                {{lt.prdt_desc}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+           
+                <mat-form-field class="extend-element">
+                        <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Filter Output variables here...">
+                </mat-form-field>
+            </div>
+    
+        </mat-grid-tile>
+
+        <mat-grid-tile
+            [colspan]="6"
+            [rowspan]="8"
+            [style.background]=colors[0]>  
+
+            <div id="center_panel">
+                <p id="mapping_desc">
+                     {{map_logi_nm}}       &nbsp;&nbsp;&nbsp;&nbsp; 
+                     Data Type:{{map_data_type}}       &nbsp;&nbsp;&nbsp;&nbsp;         
+                     Max Length:{{map_length}} (Default:{{map_def_val}})
+                </p>
+                <!-- <textarea id="mapping_area"></textarea> -->
+                <div [innerHTML]="Mapping" name="Mapping" id="mapping_area">
+                    
+                </div>
+
+            </div>
+
+        </mat-grid-tile>
+        
+        <mat-grid-tile
+            [colspan]="3"
+            [rowspan]="7"
+            [style.background]=colors[0]>    
+            
+            
+            <div id="right_panel">
+                <mat-tab-group style="width: 80%;">
+                    <mat-tab label="Source Fields"> 
+                        <div class="right_tab_content">
+                            <ul style="padding:0 5%; ">
+                                <a *ngFor="let i of sourceInfo">
+                                    <li title="{{i.desc}}" class="my_style">{{i.field_name}}</li>
+                                </a>
+                            </ul>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Output"> 
+                        <div class="right_tab_content">
+                            <ul style="padding:0 5%; ">
+                                <a *ngFor="let i of mapInfo">
+                                    <li title="{{i.var_name}},{{i.data_type}},Length:{{i.len}}" class="my_style">{{i.var_name}}</li>
+                                </a>
+                            </ul>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Lookup">
+                        <div class="right_tab_content">
+                            <ul style="padding:0 5%; ">
+                                <a *ngFor="let i of lookupInfo">
+                                    <li title="{{i.lkup_nm}}" class="my_style">{{i.lkup_nm}}</li>
+                                </a>
+                            </ul>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </mat-grid-tile>
+
+        
+
+        <mat-grid-tile
+            [colspan]="3"
+            [rowspan]="11"
+            [style.background]=colors[2]> 
+            
+           
+
+            <div id="left_panel">
+                <ul style="padding:0 10%;"> 
+                    <li *ngFor="let i of mapInfo | outputFilter : searchText" ngClass="my_style {{i.class}}" (click)="showMap(i.logi_name,i.data_type,i.len,i.def_val,i.mapp,i.dpComments)">{{i.var_name}}</li>
+                </ul>
+            </div>
+    
+        </mat-grid-tile>
+
+        <mat-grid-tile
+            [colspan]="3"
+            [rowspan]="6"
+            [style.background]=colors[0]>    
+
+        </mat-grid-tile>
+
+        <mat-grid-tile
+            [colspan]="6"
+            [rowspan]="1"
+            [style.background]=colors[0]>
+
+            <div id="bottom_panel1">
+        
+                <mat-checkbox [(ngModel)]="acctStrcCheck" color="primary" labelPosition="before" name="acctStrcCheck" disabled></mat-checkbox>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-form-field style="width:80%;">                                
+                    <mat-label>Account Structure Field</mat-label>
+                    <mat-select [(ngModel)]="AccountStructure" name="AccountStructure" disabled>
+                        <mat-option>None</mat-option>
+                    </mat-select>
+                </mat-form-field><br/>
+
+            </div>
+        </mat-grid-tile>
+            
+        <mat-grid-tile
+            [colspan]="6"
+            [rowspan]="2"
+            [style.background]=colors[0]>
+
+                <div id="bottom_panel2">
+                     <mat-form-field style="width:100%;">
+                        <textarea matInput [(ngModel)]="dbUserComments" name="dbUserComments" placeholder="Business Logic" disabled></textarea>
+                    </mat-form-field>
+                </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile
+            [colspan]="6"
+            [rowspan]="2"
+            [style.background]=colors[0]>
+
+                <div id="bottom_panel3">
+                    <mat-form-field style="width:100%;">
+                        <textarea matInput [(ngModel)]="userComments" name="userComments" placeholder="Test Plan Logic" disabled></textarea>
+                    </mat-form-field>
+                </div>
+                
+        </mat-grid-tile>
+
+        <mat-grid-tile
+            [colspan]="12"
+            [rowspan]="2"
+            [style.background]=colors[0]>
+
+                <div id="bottom_panel4">
+                    <mat-form-field style="width:100%;">
+                        <textarea matInput [(ngModel)]="generalComments" name="generalComments" placeholder="General Comments" disabled></textarea>
+                    </mat-form-field>
+                </div>
+                
+        </mat-grid-tile>
+
+        <mat-grid-tile
+            [colspan]="12"
+            [rowspan]="1"
+            [style.background]=colors[0]>
+
+            <button mat-raised-button (click)="gotoInitMapping()" name="gotoInitMapping">Back</button>
+                <!-- <div id="bottom_panel4">
+                    <mat-form-field style="width: 100%">
+                        <textarea matInput [(ngModel)]="generalComments" name="generalComments" placeholder="General Comments" disabled></textarea>
+                    </mat-form-field>
+                </div> -->
+                
+        </mat-grid-tile>
+
+
+
+
+    </mat-grid-list>
+</div>
+</form>
+  
+  
+  

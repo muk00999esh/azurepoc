@@ -1,0 +1,182 @@
+<form #viewForm="ngForm" name="viewForm">
+        <div *ngIf="showMapping==false">
+      <mat-grid-list cols="10" rowHeight="70px" gutterSize="0px">
+          <mat-grid-tile
+              [colspan]="2"
+              [rowspan]="8"
+              [style.background]=colors[1]> 
+          </mat-grid-tile>
+      
+          <mat-grid-tile
+              [colspan]="6"
+              [rowspan]="1"
+              [style.background]=colors[0]> 
+              <h3 class="page-heading">{{page_heading}}</h3>
+          </mat-grid-tile>
+      
+          <mat-grid-tile
+              [colspan]="2"
+              [rowspan]="8"
+              [style.background]=colors[1]> 
+          </mat-grid-tile>
+      
+          <mat-grid-tile
+              [colspan]="3"
+              [rowspan]="1"
+              [style.background]=colors[2]> 
+      
+              <div class="move-left">  
+              <!-- <h4 id="body-text">Client code: </h4><br/> -->
+              <mat-form-field class="extend-element-medium"> 
+                  <mat-label>Client Code-Client Name</mat-label>
+                  <mat-select (ngModel)="clientCode" name="clientCode" (selectionChange)="onClientChange($event.value)" required> 
+                      <mat-option *ngFor="let cli of clients" [value]="cli.clientId">
+                      {{cli.clientDetails}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field><br/>
+              </div>
+      
+          </mat-grid-tile>
+      
+          <mat-grid-tile
+              [colspan]="3"
+              [rowspan]="1"
+              [style.background]=colors[2]> 
+      
+              <div class="move-left">  
+              <!-- <h4 id="body-text">Carrier code: </h4><br/> -->
+              <mat-form-field class="extend-element-medium"> 
+                  <mat-label>Carrier Code-Carrier Name</mat-label>
+                  <mat-select (ngModel)="carrierCode" name="carrierCode" (selectionChange)="onCarrierChange($event.value)" required> 
+                      <mat-option *ngFor="let car of carriers" [value]="car.carrierId">
+                      {{car.carrierDetails}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field><br/>
+              </div>
+      
+          </mat-grid-tile>
+      
+          
+    
+          <mat-grid-tile
+              [colspan]="3"
+              [rowspan]="1"
+              [style.background]=colors[2]> 
+      
+              <div class="move-left">  
+              <!-- <h4 id="body-text">Format code: </h4><br/> -->
+              <mat-form-field class="extend-element-medium"> 
+                  <mat-label>Format Code-Format Name</mat-label>
+                  <mat-select (ngModel)="formatCode" name="formatCode" required> 
+                      <mat-option *ngFor="let fmt of formats" [value]="fmt.formatId">
+                      {{fmt.formatDetails}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field><br/>
+              </div>
+      
+          </mat-grid-tile>
+      
+          <mat-grid-tile
+            [colspan]="6"
+            [rowspan]="1"
+            [style.background]=colors[0]>         
+            
+            <button mat-raised-button (click)="gotoMapping()" name="gotoMapping">Next</button>
+          </mat-grid-tile>
+      
+      </mat-grid-list>
+    </div>
+    <div *ngIf="showMapping==true">
+    
+        <mat-grid-list cols="12" rowHeight="70px" gutterSize="0px">
+    
+            <mat-grid-tile
+                [colspan]="12"
+                [rowspan]="1"
+                [style.background]=colors[2]> 
+               
+                top most
+        
+            </mat-grid-tile>
+    
+            <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="8"
+                [style.background]=colors[2]> 
+               
+                left most
+        
+            </mat-grid-tile>
+    
+            <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="1"
+                [style.background]=colors[2]> 
+               
+                drop down
+        
+            </mat-grid-tile>
+    
+            <mat-grid-tile
+                [colspan]="4"
+                [rowspan]="8"
+                [style.background]=colors[0]>   
+    
+                <textarea rows="30" cols="80" id="mapping_area">
+                </textarea>
+                <!-- <mat-form-field >
+                    <textarea matInput id="mapping_area"
+                       placeholder="Mappings" 
+                       [formControl]="commentFC" 
+                       (change)="onCommentChange()"
+                       cdkTextareaAutosize
+                        cdkAutosizeMinRows="8"
+                        cdkAutosizeMaxRows="15">
+                    </textarea>
+                  </mat-form-field> -->
+            </mat-grid-tile>
+            
+            <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="8"
+                [style.background]=colors[0]>         
+                    output vars
+            </mat-grid-tile>
+    
+            <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="8"
+                [style.background]=colors[0]>         
+                    right most
+            </mat-grid-tile>
+            <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="8"
+                [style.background]=colors[2]> 
+                
+                <ul>
+                <a *ngFor="let i of items">
+                    <li class="{{i.class}}">{{i.name}}</li>
+                </a>
+                </ul>
+        
+            </mat-grid-tile>
+    
+            <mat-grid-tile
+                [colspan]="4"
+                [rowspan]="3"
+                [style.background]=colors[0]>         
+                    <button mat-raised-button (click)="gotoInitMapping()" name="gotoInitMapping">Back</button>
+            </mat-grid-tile>
+    
+    
+    
+        </mat-grid-list>
+    </div>
+    </form>
+      
+      
+      

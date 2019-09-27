@@ -37,8 +37,7 @@ export class LoginComponent {
     this.loginPFlag=false;
 
     
-
-    if(this.userName!=undefined&&this.userPassword!=undefined){
+    if((this.userName!=undefined&&this.userName.trim()!="")&&(this.userPassword!=undefined&&this.userPassword.trim()!="")){
       this.ls.getUser(this.userName,this.userPassword).subscribe(resp=>{
         this.result=resp;
   
@@ -58,12 +57,12 @@ export class LoginComponent {
   
       });
     }else{
-      if(this.userName==undefined&&this.userPassword==undefined){
+      if((this.userName==undefined||this.userName=="")&&(this.userPassword==undefined||this.userPassword=="")){
         this.loginUPFlag=true;
       }else{
-        if(this.userName==undefined){
+        if(this.userName==undefined||this.userName==""){
           this.loginUFlag=true;
-        }if(this.userPassword==undefined){
+        }if(this.userPassword==undefined||this.userPassword==""){
           this.loginPFlag=true;
         }
       }

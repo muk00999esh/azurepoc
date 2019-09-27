@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CreateCarrierService } from '../../Services/create-carrier.service';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { StatusDialogComponent } from '../status-dialog/status-dialog.component';
+import { StatusDialogComponent } from '../../Status-dialog/status-dialog.component';
 import { Router } from '@angular/router';
 
 @Component({

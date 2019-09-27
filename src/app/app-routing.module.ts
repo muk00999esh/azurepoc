@@ -15,6 +15,8 @@ import { CopyReformatComponent } from './reformat/copy-reformat/copy-reformat.co
 import { AddReformatComponent } from './reformat/add-reformat/add-reformat.component';
 import { InputLayoutLogisticsComponent } from './reformat/input-layout-logistics/input-layout-logistics.component';
 import { InputLayoutstructureComponent } from './reformat/input-layoutstructure/input-layoutstructure.component';
+import { CFMappingComponent } from './CFMapping/cfmapping.component';
+
 
 
 const routes: Routes = [
@@ -31,8 +33,8 @@ const routes: Routes = [
   {path:'viewReformat',component:ViewReformatComponent},
   {path:'copyReformat',component:CopyReformatComponent},
   {path: 'modifyReformatLayout',component: InputLayoutLogisticsComponent},
-  {path: 'modRefLayoutStr',component: InputLayoutstructureComponent}
-  
+  {path: 'modRefLayoutStr',component: InputLayoutstructureComponent},
+  {path:'CFMapping',component:CFMappingComponent}
 
 
 ];
