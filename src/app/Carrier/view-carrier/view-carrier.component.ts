@@ -25,6 +25,7 @@ export class ViewCarrierComponent {
   details:any;
 
   //values that are binded to each field on the UI
+  carrierCode='';
   carrierName='';
   carrierType={
     value:'',viewValue:''
