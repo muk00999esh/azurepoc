@@ -1,9 +1,38 @@
-import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { ReformatService } from '../../Services/reformat.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
+import { Component, OnInit,ViewChild  } from '@angular/core';
+import { Router } from '@angular/router';
+import { CSVRecord } from '../../CSVModel';  
 
+export interface PeriodicElement2 {
+  Header_Trailer_Flag: string;
+  Field_Name: string;
+  Data_Type: string;
+  Format: string;
+  Range_Type: string;
+  Minimum_Value: string;
+  Maximum_Value: string;
+  Valid_Value_List: string;
+}
+const ELEMENT_DATA2: PeriodicElement2[] = [
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" }
+];
 export interface PeriodicElement {
   fmrc_rec_len: string;
   fmrc_rec_ind_val: string;
@@ -59,11 +88,17 @@ export class ViewReformatComponent implements OnInit {
   first=false;
   second=true;
   third=true;
-  constructor(private reformatService: ReformatService) { }
+  mainscreen=false;
+  range2= ["--Select--", "Range", "Valid", "None"];
+  datatype = ["--Select--", "String", "Date", "Number"];
+  formatDate= ["--Select--", "MM-DD-YYYY", "DD-MM-YYYY", "YYYY-MM-DD"];
+  displayedColumns2: string[];
+  dataSource2 = new MatTableDataSource<PeriodicElement2>(ELEMENT_DATA2);
+  selection2 = new SelectionModel<PeriodicElement2>(true, []);
+  constructor(private reformatService: ReformatService, private router: Router) { }
 
   ngOnInit() {
     this.page_heading = "View Reformat Information";
-    
     this.getAllCarriers();
     this.getFileType();
     this.getAllCarriersModifyScreen();
@@ -178,31 +213,13 @@ export class ViewReformatComponent implements OnInit {
       });
   }
   nextFirst() {
-    this.error = "";
-    if (this.selectedCarr == "S") {
-      this.error = "*Please select a Carrier";
-    } else if (this.selectedSubjectArea == "S") {
-      this.error = "*Please select a Subject Area";
-    } else if (this.selectedAvailableFormat == "S") {
-      this.error = "*Please select Format Code to modify";
-    } else if (this.selectedItems.length == 0) {
-      this.error = "*Please select atleast one carriers associated with the format code";
-    } else if (this.formatName.length == 0) {
-      this.error = "*Format Name cannot be blank";
-    } else if (this.formatTyp == "S") {
-      this.error = "*Please select File Type";
-    } else if (this.layoutSelected == "S") {
-      this.error = "*Please select Layout Type";
-    }
-    else {
-      this.error = "";
       this.first=true;
       this.second=false;
       this.flfm_id=this.selectedAvailableFormat;
       this.getHeaderTrailer();
       this.getFormatInfoForLayout();
       this.getLayoutScreen();
-    }
+      this.displayedColumns = [ 'fmrc_rec_ind_val','fmrc_rec_len', 'fmrc_col_count', 'fmrc_header_ind','felg_rec_typ','Delete_Record']
   }
   getFormatInfoForLayout() {
     var resp;
@@ -251,8 +268,15 @@ export class ViewReformatComponent implements OnInit {
             element.fmrc_col_count="";
           }
         });
+        if(check.length ==0){
+          check=[
+            {fmrc_rec_ind_val: "", fmrc_rec_len: '', fmrc_col_count: "", fmrc_header_ind: "S", felg_rec_typ:"S"},
+            {fmrc_rec_ind_val: "", fmrc_rec_len: '',  fmrc_col_count: "", fmrc_header_ind: "S" ,felg_rec_typ:"S"},
+            {fmrc_rec_ind_val: "", fmrc_rec_len: '',  fmrc_col_count: "", fmrc_header_ind: "S",felg_rec_typ:"S"},
+            {fmrc_rec_ind_val: "", fmrc_rec_len: '', fmrc_col_count: "", fmrc_header_ind:"S",felg_rec_typ:"S"}
+          ];
+        }
         this.dataSource = check;
-        console.log(this.dataSource)
       });
   }
   getHeaderTrailer(){
@@ -274,7 +298,10 @@ export class ViewReformatComponent implements OnInit {
   nextSecond(){
     this.first=true;
     this.second=true;
-    this.third=false
+    this.third=false;
+    this.flfm_id = this.reformatService.serviceData;
+    this.displayedColumns2 = ['Header_Trailer_Flag', 'Field_Name', 'Data_Type', 'Format', 'Record_Type_Ind', 'File_Enclosed', 'Range_Type', 'Minimum_Value', 'Maximum_Value', 'Valid_Value_List'];
+
   }
 
 

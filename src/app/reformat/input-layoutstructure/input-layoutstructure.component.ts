@@ -17,21 +17,21 @@ export interface PeriodicElement {
   Valid_Value_List: string;
 }
 const ELEMENT_DATA: PeriodicElement[] = [
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
-  { Header_Trailer_Flag: 'HEADER', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" }
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" },
+  { Header_Trailer_Flag: '', Field_Name: "", Data_Type: "--Select--", Format: "--Select--", Range_Type: "--Select--", Minimum_Value: "", Maximum_Value: "", Valid_Value_List: "--Select--" }
 ];
 @Component({
   selector: 'app-input-layoutstructure',
@@ -45,6 +45,7 @@ export class InputLayoutstructureComponent implements OnInit {
   page_heading = "Input Layout Structure";
   range = ["--Select--", "Range", "Valid", "None"];
   datatype = ["--Select--", "String", "Date", "Number"];
+  formatDate= ["--Select--", "MM-DD-YYYY", "DD-MM-YYYY", "YYYY-MM-DD"];
   displayedColumns: string[];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);

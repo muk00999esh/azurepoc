@@ -138,6 +138,9 @@ export class InputLayoutLogisticsComponent implements OnInit {
           this.layoutUpdate = JSON.parse(resp._body);
           this.openDialog();
         });
+    }else{
+      this.layoutUpdate={"status":"No changes","message":"Details related to Reformat code were not changed!"}
+      this.openDialog();
     }
  
   }
